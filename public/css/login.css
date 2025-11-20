@@ -1,0 +1,69 @@
+        .text-primary {
+            color: var(--bs-primary) !important;
+        }
+
+        .text-primary:hover {
+            color: #4A7727 !important;
+        }
+
+        .btn-outline-primary {
+            color: var(--bs-primary);
+            border-color: var(--bs-primary);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--bs-primary);
+            color: white;
+            border-color: var(--bs-primary);
+        }
+
+
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            transition: all 0.3s ease;
+            color: white; /* make sure text is white */
+        }
+
+        .btn-primary:hover {
+            background-color: #4A7727; /* darker green */
+            border-color: #4A7727;
+        }
+
+        :root {
+            --bs-primary: #558B2F;
+            --bs-secondary: #8BC34A;
+            --custom-bg-light: #F9FFF5;
+            --custom-overlay-green: rgba(85,139,47,0.85);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .auth-background {
+            background-image: url('https://placehold.co/1200x800/8BC34A/FFFFFF/png?text=Learning+Background');
+            background-size: cover; background-position: center;
+            position: relative; color: white; padding: 3rem;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
+        }
+        .auth-background::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--custom-overlay-green);
+            z-index: 1;
+        }
+        .auth-content { z-index: 2; }
+        .role-selector { border: 1px solid #dee2e6; border-radius: 0.75rem; padding: 0.25rem; }
+        .role-selector-item {
+            cursor: pointer; padding: 0.5rem 0.2rem;
+            border-radius: .5rem; transition: all 0.2s;
+            text-align: center; font-size: .875rem; font-weight: 500;
+            width: 33.33%;
+        }
+        .role-selector-item.active {
+            background-color: var(--bs-primary);
+            color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
