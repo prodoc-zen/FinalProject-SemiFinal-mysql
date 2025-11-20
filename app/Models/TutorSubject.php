@@ -9,4 +9,10 @@ class TutorSubject extends Model
 {
     /** @use HasFactory<\Database\Factories\TutorSubjectFactory> */
     use HasFactory;
+    
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }

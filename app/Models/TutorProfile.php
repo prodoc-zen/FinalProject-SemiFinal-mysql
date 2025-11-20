@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class TutorProfile extends Model
 {
@@ -12,4 +14,12 @@ class TutorProfile extends Model
 
     // TutorProfile.php
     protected $fillable = ['user_id', 'phone', 'address', 'profile_picture', 'bio', 'rating'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
+
 }

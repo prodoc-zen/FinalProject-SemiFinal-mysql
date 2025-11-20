@@ -1,0 +1,118 @@
+:root {
+            --bs-primary: #558B2F; 
+            --bs-secondary: #8BC34A;
+            --custom-bg-light: #F9FFF5; 
+            --custom-border: #eef0f2;
+            --sidebar-width: 280px;
+            --header-height: 65px; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            background-color: #fff;
+            margin: 0;
+            padding-left: var(--sidebar-width);
+        }
+
+        /* --- Bootstrap Overrides --- */
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            border-radius: 0.5rem;
+            font-weight: 600; /* Added for visual punch */
+        }
+        .btn-primary:hover {
+            background-color: #4A7727; 
+            border-color: #4A7727;
+        }
+        .text-primary {
+            color: var(--bs-primary) !important;
+        }
+        .user-avatar {
+            width: 40px; 
+            height: 40px; 
+            background-color: var(--bs-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        /* --- General Card Styles (Copied from user's provided stats card styles for consistency) --- */
+        .stat-card {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--custom-border);
+        }
+        .stat-card .icon-circle,
+        .tutor-icon-box { /* Applied same styling to tutor icons */
+            width: 50px;
+            height: 50px;
+            background-color: rgba(85, 139, 47, 0.1); /* Lighter tint of primary */
+            color: var(--bs-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .book-button {
+            background-color: var(--bs-primary);
+            border: none;
+            color: white !important;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            font-weight: 600;
+        }
+        .book-button:hover {
+            background-color: #4A7727;
+        }
+        
+       
+
+        /* --- Tutor Card Specific Styles --- */
+        .tutor-card {
+            background-color: #ffffff;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+        .tutor-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 10px -3px rgba(0, 0, 0, 0.1);
+        }
+        .tutor-subject {
+            color: var(--bs-primary);
+            font-weight: 600;
+        }
+        
+
+
+        /* --- Responsive Rules (Copied and adjusted for the new header/padding logic) --- */
+        @media (max-width: 991.98px) {
+            body { padding-left: 0; }
+            .sidebar { display: none; }
+            .fixed-header { 
+                width: 100%; 
+                padding: 0.75rem 1rem; 
+                height: auto; /* Allow height to adjust on mobile */
+            }
+            .content-area { 
+                padding: 1.5rem; 
+                padding-top: calc(1.5rem + 56px); /* Use standard navbar height approximation */
+            }
+            .main-wrapper {
+                 /* Added to ensure main content takes full width when sidebar is hidden */
+                margin-left: 0; 
+            }
+        }

@@ -13,4 +13,9 @@ class StudentProfile extends Model
     // StudentProfile.php
     protected $fillable = ['user_id', 'phone', 'address', 'profile_picture', 'bio'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // user_id column must exist
+    }
+
 }

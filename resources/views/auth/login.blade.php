@@ -76,7 +76,7 @@
 
                 
 
-                <p class="fs-5 fw-semibold text-dark mb-1 mt-4" id="loginTitle">Student Login</p>
+                <p class="fs-5 fw-semibold text-dark mb-1 mt-4" id="loginTitle">User Login</p>
                 <p class="text-muted small mb-3" id="loginSubtitle">Access your learning dashboard.</p>
 
                 <!-- Laravel Login Form -->
