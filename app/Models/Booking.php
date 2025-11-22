@@ -10,6 +10,16 @@ class Booking extends Model
     /** @use HasFactory<\Database\Factories\BookingFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'student_id',
+        'tutor_id',
+        'subject_id',
+        'scheduled_at',
+        'duration_minutes',
+        'status',
+        // add other columns as needed
+    ];
+
     public function student()
     {
         return $this->belongsTo(StudentProfile::class, 'student_id');
@@ -24,7 +34,6 @@ class Booking extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
-
     
 
 

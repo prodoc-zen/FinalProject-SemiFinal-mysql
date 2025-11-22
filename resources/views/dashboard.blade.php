@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutorMatch | Student Dashboard</title>
@@ -15,8 +16,9 @@
 
     <!-- Custom Styles for Fixed Dashboard Layout -->
     <link rel="stylesheet" href="{{ asset('css/dashboard-student.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/dashboard-student-browse.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard-student-modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard-student-session.css') }}">
 
 
 </head>
@@ -41,13 +43,13 @@
 
         <ul class="nav flex-column sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('student.dashboard') }}"><i class="fas fa-home"></i> Overview</a>
+                <a class="nav-link active" id="overviewLink" onclick="goToOverview()"><i class="fas fa-home"></i> Overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-search"></i> Browse Tutors</a>
+                <a class="nav-link" id="browseLink" onclick="goToBrowseTutor()"> <i class="fas fa-search"></i> Browse Tutors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> My Sessions</a>
+                <a class="nav-link" id="sessionsLink" onclick="goToSessions()"><i class="fas fa-calendar-alt"></i> My Sessions</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fas fa-user"></i> Profile</a>
@@ -86,12 +88,36 @@
                         </ul>
                     </div>
                 </nav>
-        
-            @include('students.partials.dashboard-main')
-            {{-- @include('students.partials.dashboard-browse') --}}
-         </div>
+                
+            <div id="dashboardCarousel" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active" id="slideDashboard">
+                        @include('students.partials.dashboard-main')
+                    </div>
+
+                    <div class="carousel-item" id="slideBrowse">
+                        @include('students.partials.dashboard-browse')
+                    </div>
+
+                    <div class="carousel-item" id="slideBrowse">
+                        @include('students.partials.dashboard-sessions')
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Booking Modal -->
+            @include('students.partials.dashboard-modal')
+            
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <script src="{{ asset('js/dashboard-student-carousel.js') }}"></script>
+    <script src="{{ asset('js/dashboard-student-session.js') }}"></script>
+    <script src="{{ asset('js/dashboard-student-modal.js') }}"></script>
+    
+
 </body>
 </html>

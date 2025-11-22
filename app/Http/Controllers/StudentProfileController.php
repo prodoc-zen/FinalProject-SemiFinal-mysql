@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\StudentProfile;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TutorSubject;
 
 class StudentProfileController extends Controller
 {
     public function studentDashboard()
     {
         $user = Auth::user();
+        $tutors = TutorSubject::with(['tutor'])->get();
 
         // Only students can access
         if ($user->role !== 'student') {
@@ -33,12 +35,18 @@ class StudentProfileController extends Controller
         $totalSessions = $bookings->count();
 
         $upcomingSessions = $bookings->whereIn('status', ['pending', 'confirmed'])->count();
+
+        $confirmed_bookings = $bookings->whereIn('status', ['confirmed'])->values();
+        $pending_bookings = $bookings->whereIn('status', ['pending'])->values();
+        $completed_bookings = $bookings->whereIn('status', ['completed'])->values();
+        $canceled_bookings = $bookings->whereIn('status', ['canceled'])->values();
+
         
         $activeSubjects = $bookings->isNotEmpty()
             ? $bookings->map(fn($b) => $b->subject?->name)->filter()->unique()->count()
             : 0;
 
-        // Optionally, get next upcoming session
+        // Next session details
         $nextSession = $bookings->whereIn('status', ['pending', 'confirmed'])
             ->sortBy('scheduled_at')
             ->first();
@@ -48,7 +56,14 @@ class StudentProfileController extends Controller
             'totalSessions',
             'upcomingSessions',
             'activeSubjects',
-            'nextSession'
+            'nextSession',
+            'tutors',
+            'user',
+            'confirmed_bookings',
+            'pending_bookings',
+            'completed_bookings',
+            'canceled_bookings',
+            'student'
         ));
     }
 }

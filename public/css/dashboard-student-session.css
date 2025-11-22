@@ -1,0 +1,65 @@
+.fixed-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--custom-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            width: calc(100% - var(--sidebar-width)); 
+            height: var(--header-height);
+            padding: 0.75rem 1.5rem;
+        }
+        .content-area {
+            flex-grow: 1;
+            background-color: var(--custom-bg-light);
+            padding: 2.5rem;
+            overflow-y: auto;
+            padding-top: calc(2.5rem + var(--header-height)); 
+            padding-bottom: 3rem; 
+        }
+        .session-card {
+            background-color: #ffffff;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+        .session-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+        /* Status Styles */
+        .status-upcoming {
+            background-color: #e6f4ea; /* Light Green */
+            color: var(--bs-primary);
+        }
+        .status-pending { /* PENDING STATUS */
+            background-color: #fff3cd; /* Light Yellow */
+            color: #856404;
+        }
+        .status-completed {
+            background-color: #f0f0f0; /* Light Gray */
+            color: #6c757d;
+        }
+        .status-cancelled {
+            background-color: #ffeaea; /* Light Red */
+            color: #dc3545;
+        }
+        .session-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid var(--custom-border);
+        }
+
+        /* Responsive Rules */
+        @media (max-width: 991.98px) {
+            body { padding-left: 0; }
+            .sidebar { display: none; }
+            .fixed-header { width: 100%; }
+            .content-area { 
+                padding: 1.5rem; 
+                padding-top: calc(1.5rem + var(--header-height));
+            }
+        }

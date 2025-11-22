@@ -57,7 +57,7 @@
                         <div class="card-body p-0">
                             <h4 class="fw-semibold text-white mb-2">{{$nextSession?->subject?->name ?? 'No upcoming sessions'}}</h4>
                             <p class="mb-1 fw-light"><i class="fas fa-user-circle me-2"></i> Tutor: {{ $nextSession->tutor?->user?->name ?? 'No Tutor Assigned' }}</p>
-                            <p class="mb-1 fw-light"><i class="fas fa-clock me-2"></i> Date/Time: {{ $nextSession->scheduled_at }}</p>
+                            <p class="mb-1 fw-light"><i class="fas fa-clock me-2"></i> Date/Time: {{ $nextSession->scheduled_at ?? 'N/A' }}</p>
                          
                             <p class="mt-4 fw-semibold small text-white opacity-75">
                                 Session details and the join link will be available closer to the appointment time.

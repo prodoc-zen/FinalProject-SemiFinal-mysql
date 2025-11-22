@@ -32,140 +32,70 @@
                 <!-- Tutor Cards Grid -->
                 <div id="tutorGrid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-                    <!-- Tutor Card 1: Dr. Sarah Johnson (Math) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-calculator"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">Dr. Sarah Johnson</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">Mathematics</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 4.8 (127 reviews)</span>
-                                    </div>
-                                    <p class="text-muted mt-2 small">PhD in Mathematics with engaging teaching style. Specializing in advanced algebra and calculus prep.</p>
-                                    <p class="text-muted small">10+ years experience</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$45<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($tutors as $ts)
+                        <div class="col tutor-container">
+                            <div class="tutor-card card p-4 shadow-sm">
 
-                    <!-- Tutor Card 2: Prof. Michael Chen (Physics) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-atom"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">Prof. Michael Chen</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">Physics</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 4.8 (98 reviews)</span>
-                                    </div>
-                                    <p class="text-muted mt-2 small">Former university professor specializing in quantum physics. Excellent at simplifying complex mechanics.</p>
-                                    <p class="text-muted small">8 years experience</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$50<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
 
-                    <!-- Tutor Card 3: Emma Williams (English) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-book-open"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">Emma Williams</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">English Literature</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 5 (156 reviews)</span>
+                                    <!-- Icon depends on subject -->
+                                    <div class="icon-box flex-shrink-0">
+                                        <i class="fas fa-book"></i>
                                     </div>
-                                    <p class="text-muted mt-2 small">Published author and literature enthusiast. Specializing in essay structuring, literary analysis, and AP prep.</p>
-                                    <p class="text-muted small">7 years experience</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$40<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Tutor Card 4: David Martinez (Computer Science) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-code"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">David Martinez</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">Computer Science</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 4.7 (89 reviews)</span>
-                                    </div>
-                                    <p class="text-muted mt-2 small">Software engineer with a passion for teaching programming (Python, Java, C++). Specializes in data structures and algorithms.</p>
-                                    <p class="text-muted small">5 years experience</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$55<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Tutor Card 5: Dr. Lisa Anderson (Chemistry) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-flask"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">Dr. Lisa Anderson</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">Chemistry</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 4.9 (112 reviews)</span>
-                                    </div>
-                                    <p class="text-muted mt-2 small">Biochemistry PhD with engaging teaching style. Focusing on organic and inorganic chemistry for high school and college students.</p>
-                                    <p class="text-muted small">12 years experience</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$48<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
-                            </div>
-                        </div>
-                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-0 text-dark tutor-name">
+                                            {{ $ts->tutor?->user?->name ?? 'Unknown Tutor' }}
+                                        </h5>
 
-                    <!-- Tutor Card 6: James Wilson (History) -->
-                    <div class="col tutor-container">
-                        <div class="tutor-card card p-4 shadow-sm">
-                            <div class="d-flex align-items-start gap-3 mb-3 flex-grow-1">
-                                <div class="icon-box flex-shrink-0"><i class="fas fa-scroll"></i></div>
-                                <div>
-                                    <h5 class="fw-bold mb-0 text-dark tutor-name">James Wilson</h5>
-                                    <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">History</p>
-                                    <div class="text-xs text-muted">
-                                        <span class="d-inline-flex align-items-center me-3"><i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i> 4.6 (74 reviews)</span>
+                                        <p class="text-sm fw-semibold mb-1 tutor-subject" style="color:var(--tm-dark-green);">
+                                            {{ $ts->subject?->name ?? 'No Subject' }}
+                                        </p>
+
+                                        <div class="text-xs text-muted">
+                                            <span class="d-inline-flex align-items-center me-3">
+                                                <i class="fas fa-star text-warning me-1" style="font-size: 0.75rem;"></i>
+                                                {{ number_format($ts->tutor?->rating ?? 4.5, 1) }} ({{ rand(40,150) }} reviews)
+                                            </span>
+                                        </div>
+
+                                        <p class="text-muted mt-2 small">
+                                            {{ $ts->tutor?->bio ?? 'No description available.' }}
+                                        </p>
+
+                                        <p class="text-muted small">
+                                            {{ rand(3,12) }} years experience
+                                        </p>
                                     </div>
-                                    <p class="text-muted mt-2 small">History buff specializing in World War and Ancient civilizations. Great for research paper guidance and test prep.</p>
-                                    <p class="text-muted small">6 years experience</p>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
-                                <h6 class="fw-bold text-xl text-dark mb-0">$38<span class="small fw-normal text-muted">/hour</span></h6>
-                                <button class="btn book-button text-white shadow-sm">Book Session</button>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 border-top border-light-subtle">
+                                    <h6 class="fw-bold text-xl text-dark mb-0">
+                                        ${{ $ts->tutor?->hourly_rate ?? 0.69 }}
+                                        <span class="small fw-normal text-muted">/hour</span>
+                                    </h6>
+                                    <button 
+                                        class="btn btn-primary text-white shadow-sm"
+                                        onclick="openBookingModal(this)"
+                                        data-tutor-name="{{ $ts->tutor?->user?->name ?? 'Unknown Tutor' }}"
+                                        data-tutor-subject="{{ $ts->subject?->name ?? 'No Subject' }}"
+                                        data-tutor-rate="{{ $ts->tutor?->hourly_rate     ?? 15 }}"
+                                        data-tutor-id="{{ $ts->tutor?->id ?? 0 }}"
+                                        data-subject-id="{{ $ts->subject->id ?? 0 }}"
+                                        data-student-id="{{ $student->id ?? 0 }}">
+                                        Book Session
+                                    </button>
+
+
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
 
 
 </main>
+
