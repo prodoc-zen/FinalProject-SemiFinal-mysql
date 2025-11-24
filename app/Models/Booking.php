@@ -17,7 +17,6 @@ class Booking extends Model
         'scheduled_at',
         'duration_minutes',
         'status',
-        // add other columns as needed
     ];
 
     public function student()

@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TutorMatch | Student Dashboard</title>
+    <title>Tuturo | Student Dashboard</title>
     <!-- Load Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
@@ -30,7 +30,7 @@
             <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold me-2" style="width:32px;height:32px;background-color:var(--bs-primary);">
                T
             </div>
-            <span class="fs-5 fw-bold text-primary">TutorMatch</span>
+            <span class="fs-5 fw-bold brand-title">Tuturo</span>
         </a>
 
         <div class="d-flex align-items-center gap-3 pb-4 mb-4 border-bottom">
@@ -80,7 +80,9 @@
                         </a>
 
                         <ul class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
+                            <span class="d-none d-md-inline me-2 text-muted fw-semibold">{{ Auth::user()->name }}</span>
                             <li class="nav-item">
+                                
                                 <a class="nav-link d-flex align-items-center" href="{{ route('profile.edit') }}">
                                     <div class="user-avatar" style="width:32px;height:32px;font-size:0.8rem;">{{ strtoupper(substr(Auth::user()->name,0,2)) }}</div>
                                 </a>

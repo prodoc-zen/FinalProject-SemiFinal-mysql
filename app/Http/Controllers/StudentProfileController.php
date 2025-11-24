@@ -22,9 +22,7 @@ class StudentProfileController extends Controller
         // Get student's profile
         $student = StudentProfile::where('user_id', $user->id)->first();
   
-        if (!$student) {
-            return redirect()->route('dashboard')->with('error', 'Student profile not found.');
-        }
+        
 
         // Get bookings for this student, including related tutor and subject
         $bookings = Booking::with(['tutor', 'subject'])
@@ -40,6 +38,11 @@ class StudentProfileController extends Controller
         $pending_bookings = $bookings->whereIn('status', ['pending'])->values();
         $completed_bookings = $bookings->whereIn('status', ['completed'])->values();
         $canceled_bookings = $bookings->whereIn('status', ['canceled'])->values();
+
+        $confirmed_bookings_count = $bookings->whereIn('status', ['confirmed'])->count();
+        $pending_bookings_count = $bookings->whereIn('status', ['pending'])->count();
+        $completed_bookings_count = $bookings->whereIn('status', ['completed'])->count();
+        $canceled_bookings_count = $bookings->whereIn('status', ['canceled'])->count();
 
         
         $activeSubjects = $bookings->isNotEmpty()
@@ -63,7 +66,11 @@ class StudentProfileController extends Controller
             'pending_bookings',
             'completed_bookings',
             'canceled_bookings',
-            'student'
+            'student',
+            'confirmed_bookings_count',
+            'pending_bookings_count',
+            'completed_bookings_count',
+            'canceled_bookings_count',
         ));
     }
 }

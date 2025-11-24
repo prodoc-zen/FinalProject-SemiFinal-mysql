@@ -13,7 +13,7 @@ class TutorProfile extends Model
     use HasFactory;
 
     // TutorProfile.php
-    protected $fillable = ['user_id', 'phone', 'address', 'profile_picture', 'bio', 'rating'];
+    protected $fillable = ['user_id', 'phone', 'address', 'profile_picture', 'bio', 'rating', 'balance', 'hourly_rate'];
 
     public function user()
     {

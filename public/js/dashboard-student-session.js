@@ -18,11 +18,14 @@ document.addEventListener('DOMContentLoaded', function ()
     };
 
     // Show Complete Modal
-    window.showCompleteModal = function(tutorName, topic, time) {
+    window.showCompleteModal = function(tutorName, topic, time, bookingIdParam) {
         currentActionDetails = { type: 'complete', tutorName, topic, time };
         document.getElementById('modalCompleteTutorName').textContent = tutorName;
         document.getElementById('modalCompleteSessionTopic').textContent = topic;
         document.getElementById('modalCompleteSessionTime').textContent = time;
+        document.getElementById('completeBookingId').value = bookingIdParam;
+        alert(document.getElementById('completeBookingId').value);
+
         completeModal.show();
     };
 
@@ -37,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function ()
     // Confirm Complete
     document.getElementById('confirmCompleteBtn').addEventListener('click', function() {
         if (currentActionDetails.type === 'complete') {
-            console.log(`SESSION COMPLETION CONFIRMED: Tutor: ${currentActionDetails.tutorName}, Topic: ${currentActionDetails.topic}, Time: ${currentActionDetails.time}`);
+            
+            document.getElementById('completeSessionForm').submit();
             completeModal.hide();
         }
     });

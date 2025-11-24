@@ -8,13 +8,13 @@
                 <!-- Tabs for filtering sessions -->
                 <ul class="nav nav-tabs mb-4" id="sessionTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming-sessions" type="button" role="tab">Upcoming (3)</button>
+                        <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming-sessions" type="button" role="tab">Upcoming ({{$confirmed_bookings_count + $pending_bookings_count}})</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-sessions" type="button" role="tab">Completed (4)</button>
+                        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-sessions" type="button" role="tab">Completed ({{$completed_bookings_count}})</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled-sessions" type="button" role="tab">Cancelled (1)</button>
+                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled-sessions" type="button" role="tab">Cancelled ({{$canceled_bookings_count}})</button>
                     </li>
                 </ul>
 
@@ -24,7 +24,7 @@
                     <div class="tab-pane fade show active" id="upcoming-sessions" role="tabpanel" aria-labelledby="upcoming-tab">
                         <div class="row g-4" id="upcomingSessionsList">
                             
-                            @foreach($confirmed_bookings as $session)
+                            @forelse($confirmed_bookings as $session)
                                 <!-- Upcoming Session Card: CONFIRMED -->
                                 <div class="col-12 col-lg-6">
                                     <div class="session-card shadow-sm">
@@ -36,7 +36,7 @@
                                             <div class="d-flex gap-3 mb-3 align-items-center">
                                                 <div class="tutor-icon-box"><i class="fas fa-calculator"></i></div>
                                                 <div>
-                                                    <h5 class="fw-bold mb-0 text-dark">{{ $session->tutor->name }}</h5>
+                                                    <h5 class="fw-bold mb-0 text-dark">{{ $session->tutor->user->name }}</h5>
                                                     <p class="text-sm fw-semibold text-primary mb-0">{{ $session->subject->name }}</p>
                                                 </div>
                                             </div>
@@ -52,21 +52,23 @@
                                             </div>
                                             <div class="d-flex justify-content-end">
                                                 <!-- Complete & Cancel Actions -->
-                                                <button class="btn btn-primary me-2" onclick="showCompleteModal('{{ $session->tutor->name }}', '{{ $session->subject->name }}', '{{ $start->format('M j, Y \a\t g:i A') }}')">
+                                                <button class="btn btn-primary me-2" onclick="showCompleteModal('{{ $session->tutor->user->name }}', '{{ $session->subject->name }}', '{{ $start->format('M j, Y \a\t g:i A') }}', '{{ $session->id }}')">
                                                     <i class="fas fa-check-circle me-1"></i> Complete Session
                                                 </button>
-                                                <button class="btn btn-outline-danger" onclick="showCancelModal('{{ $session->tutor->name }}', '{{ $session->subject->name }}', '{{ $start->format('M j, Y \a\t g:i A') }}')">
+                                                <button class="btn btn-outline-danger" onclick="showCancelModal('{{ $session->tutor->user->name }}', '{{ $session->subject->name }}', '{{ $start->format('M j, Y \a\t g:i A') }}', '{{ $session->id }}')">
                                                     <i class="fas fa-times me-1"></i> Cancel
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <p class="text-muted small mb-3">Upcoming and Pending bookings appear here.</p>
+                            @endforelse
 
 
                             
-                            @foreach($pending_bookings as $session)
+                            @forelse($pending_bookings as $session)
                                 <!-- Upcoming Session Card 2: PENDING (ACTION: Cancel Request) -->
                                 <div class="col-12 col-lg-6">
                                     <div class="session-card shadow-sm border-warning">
@@ -111,7 +113,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                
+                            @endforelse
 
                                 
                             </div>
@@ -121,7 +125,7 @@
                     <div class="tab-pane fade" id="completed-sessions" role="tabpanel" aria-labelledby="completed-tab">
                         <div class="row g-4">
                            
-                            @foreach($completed_bookings as $session)
+                            @forelse($completed_bookings as $session)
                                 <div class="col-12 col-lg-6">
                                     <div class="session-card shadow-sm">
                                         <div class="session-header p-3 d-flex justify-content-between align-items-center">
@@ -144,39 +148,43 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <p class="text-muted small mb-3">Completed Bookings will appear here.</p>
+                            @endforelse
                             
                         </div>
                     </div>
 
                     <!-- Cancelled Sessions Tab -->
                     <div class="tab-pane fade" id="cancelled-sessions" role="tabpanel" aria-labelledby="cancelled-tab">
-    <div class="row g-4">
-        @foreach($canceled_bookings as $session)
-            <div class="col-12 col-lg-6">
-                <div class="session-card shadow-sm">
-                    <div class="session-header p-3 d-flex justify-content-between align-items-center">
-                        <span class="session-status status-cancelled">CANCELED</span>
-                        <span class="text-danger small"><i class="fas fa-user-times me-1"></i> By Student</span>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="d-flex gap-3 mb-3 align-items-center">
-                            <div class="tutor-icon-box" style="background-color: rgba(220, 53, 69, 0.1); color: #dc3545;"><i class="fas fa-flask"></i></div>
-                            <div>
-                                <h5 class="fw-bold mb-0 text-dark">{{ $session->tutor->user->name }}</h5>
-                                <p class="text-sm fw-semibold text-danger mb-0">{{ $session->subject->name }}</p>
-                            </div>
+                        <div class="row g-4">
+                            @forelse($canceled_bookings as $session)
+                                <div class="col-12 col-lg-6">
+                                    <div class="session-card shadow-sm">
+                                        <div class="session-header p-3 d-flex justify-content-between align-items-center">
+                                            <span class="session-status status-cancelled">CANCELED</span>
+                                            <span class="text-danger small"><i class="fas fa-user-times me-1"></i> By Student</span>
+                                        </div>
+                                        <div class="card-body p-4">
+                                            <div class="d-flex gap-3 mb-3 align-items-center">
+                                                <div class="tutor-icon-box" style="background-color: rgba(220, 53, 69, 0.1); color: #dc3545;"><i class="fas fa-flask"></i></div>
+                                                <div>
+                                                    <h5 class="fw-bold mb-0 text-dark">{{ $session->tutor->user->name }}</h5>
+                                                    <p class="text-sm fw-semibold text-danger mb-0">{{ $session->subject->name }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row small g-2">
+                                                <div class="col-6"><i class="fas fa-calendar me-2 text-muted"></i> Original Date: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('M d, Y') }}</span></div>
+                                                <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('g:i A') }} - {{ \Carbon\Carbon::parse($session->scheduled_at)->addMinutes($session->duration)->format('g:i A') }}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-muted small mb-3">Cancelled Bookings will appear here.</p>
+                            @endforelse
                         </div>
-                        <div class="row small g-2">
-                            <div class="col-6"><i class="fas fa-calendar me-2 text-muted"></i> Original Date: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('M d, Y') }}</span></div>
-                            <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('g:i A') }} - {{ \Carbon\Carbon::parse($session->scheduled_at)->addMinutes($session->duration)->format('g:i A') }}</span></div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
 
                 </div>
 

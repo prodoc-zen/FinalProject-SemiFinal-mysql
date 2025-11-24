@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->decimal('balance', 15, 2)->default(0);
             $table->text('bio')->nullable();
             $table->timestamps();
         });

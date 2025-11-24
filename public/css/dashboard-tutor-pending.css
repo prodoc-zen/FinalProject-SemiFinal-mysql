@@ -1,0 +1,198 @@
+.main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%; 
+        }
+        @media (min-width: 992px) { /* lg screens */
+            .main-wrapper {
+                margin-left: var(--sidebar-width); /* Pushes wrapper right past fixed sidebar */
+            }
+        }
+
+
+        /* --- Fixed Header Styles (Top Navigation Bar) --- */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000; 
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--custom-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            width: 100%; 
+            height: var(--header-height);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+        }
+        @media (min-width: 992px) { 
+             .fixed-header {
+                width: calc(100% - var(--sidebar-width)); /* Header width is screen - sidebar width */
+             }
+        }
+
+
+        /* --- Main Content Area Styles (Crucial for positioning) --- */
+        .content-area {
+            flex-grow: 1; 
+            background-color: var(--custom-bg-light);
+            padding: 2.5rem; 
+            overflow-y: auto; 
+            /* Push content down below the fixed header (This is the key line) */
+            padding-top: calc(2.5rem + var(--header-height)); 
+            padding-bottom: 3rem; 
+            min-height: 100vh
+        }
+        /* End Main Content Positioning CSS */
+
+
+        /* --- Card Styles (Dashboard) --- */
+        .stat-card {
+            background-color: #ffffff;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            min-height: 150px; 
+        }
+        .next-session-card {
+            background-color: var(--bs-primary) !important; 
+            color: white;
+            border: none !important;
+            padding: 2.5rem !important; 
+        }
+
+    
+        
+        /* --- Session List Specific Styles --- */
+        .session-item {
+            display: flex;
+            align-items: center; /* Vertically align items */
+            background-color: white;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            /* Default Green left border/indicator (for confirmed sessions) */
+            border-left: 5px solid var(--bs-primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s ease;
+        }
+        /* Color variants for request statuses */
+        .session-item.status-pending { border-left-color: #ffc107; } /* Yellow for pending */
+        .session-item.status-completed { border-left-color: #0d6efd; } /* Blue for completed */
+        .session-item.status-canceled { border-left-color: #dc3545; opacity: 0.7; }
+        .session-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        
+        .session-info {
+            flex-grow: 1; /* Takes up all available space */
+            padding-right: 1.5rem; /* Space between info and actions */
+        }
+        
+        .session-info h4 {
+            font-size: 1.15rem;
+            font-weight: 700; 
+            color: #333;
+            margin-bottom: 0.25rem; 
+        }
+        
+        .session-info .student-name {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .session-info .time-location {
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        .session-info .time-location i {
+            color: #888;
+            margin-right: 0.5rem;
+        }
+
+        .session-actions {
+            display: flex;
+            flex-shrink: 0; 
+            gap: 0.75rem;
+            margin-left: auto; 
+            align-items: center; /* Vertically align items (buttons and badges) */
+        }
+        
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.5rem;
+            line-height: 1; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-width: 80px; 
+        }
+        .status-badge.pending { background-color: #fff3cd; color: #856404; }
+        .status-badge.completed { background-color: #cfe2ff; color: #0d6efd; }
+        .status-badge.canceled { background-color: #f8d7da; color: #721c24; }
+
+
+        /* Styles for the Bootstrap Tabs */
+        .nav-tabs .nav-link {
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #6c757d;
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-tabs .nav-link:hover {
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .nav-tabs .nav-link.active {
+            color: var(--bs-primary);
+            border-bottom: 3px solid var(--bs-primary);
+            background-color: transparent;
+            font-weight: 600;
+        }
+        .nav-tabs {
+            border-bottom: 1px solid var(--custom-border);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mock data for sidebar context */
+        .mock-user-initials::after { content: 'SJ'; }
+        .mock-user-name::after { content: 'Dr. Sarah Johnson'; }
+        .mock-user-role::after { content: 'Tutor'; }
+        
+        /* Responsive Rules */
+        @media (max-width: 991.98px) {
+            .content-area { 
+                padding: 1.5rem;
+                padding-top: calc(1.5rem + var(--header-height));
+            }
+            .session-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .session-info {
+                padding-right: 0;
+            }
+            .session-actions {
+                width: 100%;
+                margin-top: 1rem;
+                margin-left: 0;
+                justify-content: space-between; /* Spread buttons out on mobile */
+                gap: 0.5rem;
+            }
+            .session-actions .btn {
+                flex-grow: 1;
+                padding: 0.5rem 0.75rem;
+            }
+        }

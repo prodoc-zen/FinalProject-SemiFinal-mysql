@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -34,20 +35,21 @@ class AuthenticatedSessionController extends Controller
         $user = auth()->user();
 
         // Redirect based on role
-        switch ($user->role) {
-        case 'student':
-            return redirect()->route('student.dashboard'); 
-        case 'tutor':
-            return redirect()->route('profile.edit'); 
-        case 'admin':
-            return redirect()->route('profile.edit'); 
-        default:
-            return view('auth.login');
-}
+        switch ($user->role) 
+        {
+            case 'student':
+                return redirect()->route('student.dashboard'); 
+            case 'tutor':
+                
+                return redirect()->route('tutor.dashboard'); 
+            case 'admin':
+                return redirect()->route('profile.edit'); 
+            default:
+                return view('auth.login');
+        }
 
 
-        // fallback if role missing
-        return redirect()->route('dashboard');
+        // fallback if role missin
     }
 
 

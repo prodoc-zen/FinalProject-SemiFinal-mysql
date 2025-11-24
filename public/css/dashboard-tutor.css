@@ -1,0 +1,310 @@
+:root {
+            --bs-primary: #558B2F; /* A vibrant green for primary actions and branding */
+            --bs-secondary: #8BC34A; /* A lighter green for secondary elements */
+            --custom-bg-light: #F9FFF5; /* Very light green background for content area */
+            --custom-border: #eef0f2; /* Light grey for borders */
+            --sidebar-width: 280px; /* Fixed width for the sidebar */
+            --header-height: 65px; /* Fixed height for the header */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex; /* Use flexbox for layout */
+            background-color: #fff; /* White background for the main body */
+            margin: 0;
+          
+        }
+
+        /* --- Global Styles & Overrides --- */
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #4A7727; /* Darker green on hover */
+            border-color: #4A7727;
+        }
+        .user-avatar {
+            width: 40px; /* Fixed size for avatars */
+            height: 40px; 
+            background-color: var(--bs-primary);
+            border-radius: 50%; /* Circular avatars */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0; /* Prevent shrinking in flex containers */
+        }
+        .tutor-icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(85, 139, 47, 0.1); /* Light green background */
+            color: var(--bs-primary);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* --- Sidebar Specific Styles --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            min-width: var(--sidebar-width); /* Ensures sidebar doesn't get smaller */
+            background-color: #ffffff;
+            border-right: 1px solid var(--custom-border);
+            height: 100vh; /* Full viewport height */
+            position: fixed; /* Fixed position */
+            top: 0;
+            left: 0;
+            z-index: 1020; /* Above most content, below modals */
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            padding: 1.5rem; /* Internal spacing */
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+        .sidebar-nav .nav-link {
+            color: #6c757d; /* Muted text color */
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .sidebar-nav .nav-link:hover {
+            background-color: var(--custom-bg-light);
+            color: var(--bs-primary);
+        }
+        .sidebar-nav .nav-link.active {
+            background-color: var(--bs-primary);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(85, 139, 47, 0.3); /* Subtle shadow for active state */
+        }
+        .sidebar-nav .nav-link i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- Fixed Header Styles --- */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000; /* Stays on top */
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--custom-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            width: calc(100% - var(--sidebar-width)); /* Occupy remaining width */
+            height: var(--header-height);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Main Content Area Styles --- */
+        .content-area {
+            flex-grow: 1; /* Takes up remaining space */
+            background-color: var(--custom-bg-light);
+            padding: 2.5rem; /* Spacing inside the content area */
+            overflow-y: auto; /* Allow vertical scrolling */
+            padding-top: calc(2.5rem + var(--header-height)); /* Ensure content starts below header */
+            padding-bottom: 3rem; /* Space at the bottom */
+        }
+
+        /* --- NEW Card Styles --- */
+        .stat-card {
+            background-color: #ffffff;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            /* Ensure fixed minimum height for layout consistency */
+            min-height: 150px; 
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Dynamic Font Sizing for Metric Values - Default (Max) size reduced to 2.8rem */
+        .stat-card .display-5 {
+            /* * clamp(min, preferred, max)
+             * Font size will be between 1.5rem and 2.8rem.
+             * 10vw ensures it shrinks very fluidly based on viewport width.
+             */
+            font-size: clamp(1.5rem, 10vw, 2.8rem); /* MAXIMUM size is now 2.8rem */
+            white-space: nowrap; /* Prevent number from wrapping */
+            overflow: hidden; /* Hide if the number is ridiculously large */
+            text-overflow: ellipsis; /* Show ellipsis if overflowed */
+        }
+
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            background-color: var(--bs-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(85, 139, 47, 0.4);
+            flex-shrink: 0;
+        }
+        .next-session-card {
+            background-color: var(--bs-primary) !important; 
+            color: white;
+            border: none !important;
+            padding: 2.5rem !important; 
+        }
+        .next-session-card .fa-calendar-check {
+            color: white;
+            opacity: 0.8;
+        }
+        .next-session-card .card-body p i {
+            color: var(--bs-secondary);
+        }
+
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .carousel-item {
+            transition: none !important;
+        }
+
+        .brand-title {
+            color: black !important;
+            text-decoration: none;
+        }
+
+        
+
+
+
+
+
+        /* Responsive Rules */
+        @media (max-width: 991.98px) {
+            body { padding-left: 0; }
+            .sidebar { display: none; }
+            .fixed-header { width: 100%; }
+            .content-area { 
+                padding: 1.5rem;
+                padding-top: calc(1.5rem + var(--header-height));
+            }
+            .stat-card .display-5 {
+                /* On mobile, use 12vw for even more aggressive shrinking when columns stack. Max size reduced here too. */
+                font-size: clamp(1.5rem, 12vw, 2.8rem); 
+            }
+        }
+
+        .session-item {
+            display: flex;
+            align-items: center; /* Vertically align items */
+            background-color: white;
+            border: 1px solid var(--custom-border);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            /* Default Green left border/indicator (for confirmed sessions) */
+            border-left: 5px solid var(--bs-primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s ease;
+        }
+        /* Color variants for request statuses */
+        .session-item.status-pending { border-left-color: #ffc107; } /* Yellow for pending */
+        .session-item.status-completed { border-left-color: #0d6efd; } /* Blue for completed */
+        .session-item.status-canceled { border-left-color: #dc3545; opacity: 0.7; }
+        .session-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        
+        .session-info {
+            flex-grow: 1; /* Takes up all available space */
+            padding-right: 1.5rem; /* Space between info and actions */
+        }
+        
+        .session-info h4 {
+            font-size: 1.15rem;
+            font-weight: 700; 
+            color: #333;
+            margin-bottom: 0.25rem; 
+        }
+        
+        .session-info .student-name {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .session-info .time-location {
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        .session-info .time-location i {
+            color: #888;
+            margin-right: 0.5rem;
+        }
+
+        .session-actions {
+            display: flex;
+            flex-shrink: 0; 
+            gap: 0.75rem;
+            margin-left: auto; 
+            align-items: center; /* Vertically align items (buttons and badges) */
+        }
+        
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.5rem;
+            line-height: 1; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-width: 80px; 
+        }
+        .status-badge.pending { background-color: #fff3cd; color: #856404; }
+        .status-badge.completed { background-color: #cfe2ff; color: #0d6efd; }
+        .status-badge.canceled { background-color: #f8d7da; color: #721c24; }
+        
+        .badge-subject {
+            background-color: var(--custom-bg-light);
+            color: var(--bs-primary);
+            border: 1px solid var(--bs-secondary);
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px; /* Pill shape */
+            display: inline-flex;
+            align-items: center;
+        }
+        .badge-subject button {
+            margin-left: 0.5rem;
+            color: var(--bs-primary);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            line-height: 1;
+        }
+        .badge-subject button:hover {
+            opacity: 1;
+            color: #dc3545; /* Use red for removal hover */
+        }

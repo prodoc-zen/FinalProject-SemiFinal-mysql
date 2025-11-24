@@ -41,5 +41,77 @@ class BookingController extends Controller
        
     }
 
+    public function accept(Request $request)
+    {
+        $validatedData = $request->validate([
+            'booking_id' => 'required|exists:bookings,id', // matches form input name
+        ]);
+
+        $booking = Booking::find($validatedData['booking_id']);
+
+        if ($booking) {
+            $booking->status = 'confirmed'; // make sure spelling matches DB
+            $booking->save();
+
+            return redirect()->route('tutor.dashboard')->with('success', 'Booking accepted successfully!');
+        }
+
+        return redirect()->route('tutor.dashboard')->with('error', 'Booking not found.');
+    }
+
+    public function complete(Request $request)
+    {
+        $validatedData = $request->validate([
+            'booking_id' => 'required|exists:bookings,id', // matches form input name
+        ]);
+
+        $booking = Booking::find($validatedData['booking_id']);
+
+        if ($booking) {
+            $booking->status = 'completed'; // make sure spelling matches DB
+            $booking->save();
+
+            return redirect()->route('tutor.dashboard')->with('success', 'Booking completed successfully!');
+        }
+
+        return redirect()->route('tutor.dashboard')->with('error', 'Booking not found.');
+    }
+
+    public function reject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'booking_id' => 'required|exists:bookings,id', // matches form input name
+        ]);
+
+        $booking = Booking::find($validatedData['booking_id']);
+
+        if ($booking) {
+            $booking->status = 'canceled'; // make sure spelling matches DB
+            $booking->save();
+
+            return redirect()->route('tutor.dashboard')->with('success', 'Booking rejected successfully!');
+        }
+
+        return redirect()->route('tutor.dashboard')->with('error', 'Booking not found.');
+    }
+
+    public function complete_student(Request $request)
+    {
+        $validatedData = $request->validate([
+            'booking_id' => 'required|exists:bookings,id', // matches form input name
+        ]);
+
+        $booking = Booking::find($validatedData['booking_id']);
+
+        if ($booking) {
+            $booking->status = 'completed'; // make sure spelling matches DB
+            $booking->save();
+
+            return redirect()->route('student.dashboard')->with('success', 'Booking completed successfully!');
+        }
+
+        return redirect()->route('student.dashboard')->with('error', 'Booking not found.');
+    }
+
 
 }

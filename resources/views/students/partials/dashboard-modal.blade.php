@@ -136,6 +136,7 @@
             </div>
             </div>
 
+            
             <form id="cancelBookingForm" action="{{ route('booking.cancel') }}" method="POST" style="display: none;">
                 @csrf
                 <input type="hidden" name="booking_id" id="cancel_booking_id">
@@ -163,3 +164,10 @@
                 </div>
             </div>
             </div>
+
+            <form id="completeSessionForm" action="{{ route('booking-student.complete') }}" method="POST">
+                @csrf
+                <input type="hidden" name="booking_id" id="completeBookingId">
+            </form>
+
+
