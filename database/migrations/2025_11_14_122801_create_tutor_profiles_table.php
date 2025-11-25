@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->decimal('balance', 15, 2)->default(0);
             $table->decimal('hourly_rate', 8, 2)->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->string('profile_picture')->default('images/default-pfp.jpg');
             $table->text('bio')->nullable();
             $table->decimal('rating', 3, 2)->default(0.00);
             $table->timestamps();

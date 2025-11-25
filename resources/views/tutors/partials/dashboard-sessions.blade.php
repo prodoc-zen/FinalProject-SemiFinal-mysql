@@ -10,7 +10,7 @@
             <div class="tab-pane fade show active mt-5" id="upcoming-sessions" role="tabpanel" aria-labelledby="upcoming-tab">
                 <div class="sessions-list">
                     
-                    @foreach($confirmed_bookings as $confirmed_booking)
+                    @forelse($confirmed_bookings as $confirmed_booking)
                         <div class="session-item">
                             <div class="session-info">
                                 <h4 class="fw-bold mb-0">{{$confirmed_booking->subject->name}}</h4>
@@ -25,7 +25,9 @@
                                 <button class="btn btn-outline-danger" onclick="showCancelModal('{{$confirmed_booking->student->user->name}}', '{{$confirmed_booking->subject->name}}', {{$confirmed_booking->id}})"><i class="fas fa-times mr-2"></i> Cancel</button>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-muted lead-sm">No confirmed bookings found.</p>
+                    @endforelse
                 </div>
             </div>
 

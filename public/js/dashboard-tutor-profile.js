@@ -105,15 +105,23 @@
                 const initials = getInitials(profileData.tutorName);
                 
                 // Header and Sidebar avatars
-                setAvatar('sidebarAvatar', profileData.profilePictureUrl, initials);
-                setAvatar('mobileSidebarAvatar', profileData.profilePictureUrl, initials);
-                setAvatar('headerAvatar', profileData.profilePictureUrl, initials);
                 
                 // Profile View large image
+                const profileInput = document.getElementById('profilePictureInput');
                 const profileDisplay = document.getElementById('profileImageDisplay');
-                if (profileDisplay) {
-                    profileDisplay.style.borderRadius = '50%'; // Ensure large avatar is round
-                    setAvatar('profileImageDisplay', profileData.profilePictureUrl, initials);
+
+                if (profileInput && profileDisplay) {
+                    profileInput.addEventListener('change', function() {
+                        const file = this.files[0];
+                        if (!file) return; // user canceled
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const dataUrl = e.target.result;
+                            setAvatar('profileImageDisplay', dataUrl, initials);
+                        };
+                        reader.readAsDataURL(file);
+                    });
                 }
             };
             
@@ -148,6 +156,7 @@
                         
                         // Re-render all avatars
                         loadProfileData(); 
+                        profileData.profilePictureUrl = file.name; 
                         
                         // In a real application, the file would be uploaded to storage (e.g., Firebase Storage) here,
                         // and the resulting public URL would be saved to Firestore on form submission.
@@ -186,37 +195,33 @@
             // --- Event Listeners and Initial Load ---
 
             // Profile Form Submission
-            document.getElementById('profileForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // 1. Gather data from form
-                const updatedData = {
-                    phone: document.getElementById('profilePhone').value,
-                    address: document.getElementById('profileAddress').value,
-                    bio: document.getElementById('profileBio').value,
-                    hourlyRate: parseFloat(document.getElementById('profileRate').value),
-                    
-                };
 
-                // 2. Simple Validation (check rate is a number)
-                if (isNaN(updatedData.hourlyRate)) {
-                    alert('Please enter a valid hourly rate.');
+            
+            document.getElementById('saveProfileBtn').addEventListener('click', (e) => {
+                const newPassword = document.getElementById('profileNewPassword').value;
+                const confirmNewPassword = document.getElementById('profileNewPassword_confirmation').value;
+
+                if((newPassword.length > 0 && newPassword.length <= 8) && (confirmNewPassword.length > 0 && confirmNewPassword.length <= 8))
+                {
+                    alert("Password must be at least 1-8 characters long, but leave blank if you do not wish to change it.");
                     return;
                 }
-                
-                // 3. Update local mock data (excluding picture, which is already updated)
-                profileData.phone = updatedData.phone;
-                profileData.address = updatedData.address;
-                profileData.bio = updatedData.bio;
-                profileData.hourlyRate = updatedData.hourlyRate;
-                
-                // 4. Log/Save to backend (Mocked)
-                console.log('Profile Data Saved:', profileData);
-                
-                // In a real application, you would save this to Firestore here:
-                // saveProfileToFirestore(profileData); 
-                
-                alert('Profile updated successfully! (Data logged to console)');
+                if(newPassword === confirmNewPassword)
+                {
+                    document.getElementById("passwordError").style.display = "none";
+                    const confirmed = confirm("Are you sure you want to save these changes?");
+                    if (!confirmed) {
+                        return;
+                    }
+                    document.getElementById('subjectsTeaching_profile').value = JSON.stringify(profileData.subjectsTeaching);
+                    
+                    document.getElementById('profileForm').submit();
+                }
+                else
+                {
+                    document.getElementById("passwordError").style.display = "block";
+                    return;
+                } 
             });
             
             // Bio Character Count Listener
@@ -253,7 +258,7 @@
             document.getElementById("toggleConfirmNewPassword")
                 .addEventListener("click", function () {
 
-                const input = document.getElementById("profileConfirmNewPassword");
+                const input = document.getElementById("profileNewPassword_confirmation");
                 const icon = this.querySelector("i");
 
                 if (input.type === "password") {
@@ -264,8 +269,6 @@
                     icon.classList.replace("fa-eye", "fa-eye-slash");
                 }
             });
-
-
             loadProfileData();
             renderSubjects();
             populateSubjectSelect();

@@ -9,6 +9,10 @@ class TutorSubject extends Model
 {
     /** @use HasFactory<\Database\Factories\TutorSubjectFactory> */
     use HasFactory;
+    protected $fillable = [
+        'tutor_id',
+        'subject_id',
+    ];
 
 
     public function tutor()

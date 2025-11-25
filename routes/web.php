@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/booking/reject', [BookingController::class, 'reject'])->name('booking.reject');
     Route::post('/booking/complete/student', [BookingController::class, 'complete_student'])->name('booking-student.complete');
 
+    //profile
+    Route::post('/tutor/profile/update', [TutorProfileController::class, 'updateProfile_tutor'])->name('tutor.profile.update');
+
 });
 
 

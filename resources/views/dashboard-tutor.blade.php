@@ -35,7 +35,11 @@
         </a>
 
         <div class="d-flex align-items-center gap-3 pb-4 mb-4 border-bottom">
-            <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name,0,2)) }}</div>
+            <img src="{{$tutor->profile_picture }}" 
+            alt="Avatar" 
+            class="rounded-circle me-2" 
+            style="width:32px; height:32px; object-fit:cover;">
+
             <div>
                 <div class="fw-bold text-dark">{{ Auth::user()->name }}</div>
                 <div class="small text-muted">{{ ucfirst(Auth::user()->role) }}</div>
@@ -89,7 +93,7 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex align-items-center" href="#">
                             <span class="d-none d-md-inline me-2 text-muted fw-semibold">{{ Auth::user()->name  }}</span>
-                            <div class="user-avatar" style="width:32px;height:32px;font-size:0.8rem;">{{ strtoupper(substr(Auth::user()->name,0,2)) }}</div>
+                            <img src="{{ $tutor->profile_picture }}" alt="Avatar" class="rounded-circle me-2" style="width:32px; height:32px; object-fit:cover;">
                         </a>
                     </li>
                 </ul>
@@ -130,7 +134,9 @@
     <input type="hidden" id="hourlyRate_profile" value="{{ $tutor->hourly_rate }}">
     <input type="hidden" id="balance_profile" value="{{ $tutor->balance }}">
     <input type="hidden" id="profilePictureUrl_profile" value="{{ $tutor->profile_picture }}">
-    <input type="hidden" id="subjectsTeaching_profile" value="{{ json_encode($subjects ?? []) }}">
+    
+ 
+
 
 
     

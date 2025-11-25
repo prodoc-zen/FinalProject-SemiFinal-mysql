@@ -1,5 +1,6 @@
 <main class="content-area" id="mainContentArea">
-    <form id="profileForm">
+    <form id="profileForm" method="POST" action="{{ route('tutor.profile.update') }}" enctype="multipart/form-data">
+         @csrf
             <!-- 7. Profile View -->
             <div id="profileView">
                 <h2 class="fw-bolder fs-3 mb-1">Tutor Profile Settings</h2>
@@ -15,10 +16,15 @@
                             <div class="mb-4 text-center">
                                 <label class="form-label fw-semibold mb-3 d-block">Profile Picture</label>
                                 <!-- Avatar Display: will be styled via JS to show image or initials -->
-                                <div id="profileImageDisplay" class="user-avatar mx-auto mb-3" style="width: 120px; height: 120px; font-size: 3rem;">
-                                    SJ
+                                <div id="profileImageDisplay" class="mx-auto mb-3" style="width:120px; height:120px;">
+                                    <img 
+                                        src="{{ $tutor->profile_picture }}" 
+                                        alt="Profile Picture" 
+                                        class="rounded-circle"
+                                        style="width:100%; height:100%; object-fit:cover;"
+                                    >
                                 </div>
-                                <input type="file" id="profilePictureInput" class="form-control" accept="image/png, image/jpeg" aria-describedby="fileHelp">
+                                <input type="file" name="profilePictureInput" id="profilePictureInput" class="form-control" accept="image/png, image/jpeg" aria-describedby="fileHelp">
                                 <div id="fileHelp" class="form-text">JPG or PNG only. Max size 2MB.</div>
                             </div>
 
@@ -27,7 +33,7 @@
                                     <label for="profileBalance" class="form-label fw-semibold">Current Balance (Read-Only)</label>
                                     <div class="input-group">
                                         <span class="input-group-text">$</span>
-                                        <input type="text" id="profileBalance" class="form-control" readonly disabled>
+                                        <input type="text" name="profileBalance" id="profileBalance" class="form-control" value="{{ number_format($tutor->balance, 2) }}" readonly disabled>
                                     </div>
                                     <div class="form-text">Funds available for withdrawal.</div>
                                 </div>
@@ -39,36 +45,36 @@
                                 <!-- Name -->
                                  <div class="mb-3">
                                     <label for="profileName" class="form-label fw-semibold">Full Name</label>
-                                    <input type="text" id="profileName" class="form-control"  value="<?php echo $tutor->user->name; ?>">
+                                    <input type="text" name="profileName" id="profileName" class="form-control"  value="{{ $tutor->user->name }}">
                                 </div>
                                 <!-- Email -->                
                                 <div class="mb-3">
                                     <label for="profileEmail" class="form-label fw-semibold">Email Address</label>
-                                    <input type="email" id="profileEmail" class="form-control" value="<?php echo $tutor->user->email; ?>">
+                                    <input type="email" name="profileEmail" id="profileEmail" class="form-control" value="{{ $tutor->user->email }}">
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label for="profileRate" class="form-label fw-semibold">Hourly Rate</label>
                                     <div class="input-group">
                                         <span class="input-group-text">$</span>
-                                        <input type="number" id="profileRate" class="form-control" min="10.00" step="0.50">
+                                        <input type="number" name="profileRate" id="profileRate" class="form-control" min="10.00" step="0.50">
                                     </div>
                                     <div class="form-text">This rate will be displayed to students.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="profilePhone" class="form-label fw-semibold">Phone Number</label>
-                                    <input type="tel" id="profilePhone" class="form-control">
+                                    <input type="tel" name="profilePhone" id="profilePhone" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="profileAddress" class="form-label fw-semibold">Address</label>
-                                    <input type="text" id="profileAddress" class="form-control">
+                                    <input type="text" name="profileAddress" id="profileAddress" class="form-control" value="{{ $tutor->address }}">
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="profileBio" class="form-label fw-semibold">Professional Bio</label>
-                                    <textarea id="profileBio" class="form-control" rows="4" maxlength="500" placeholder="Introduce yourself, your experience, and your teaching philosophy..."><?php echo $tutor->bio; ?></textarea>
+                                    <textarea name="profileBio" id="profileBio" class="form-control" rows="4" maxlength="500" placeholder="Introduce yourself, your experience, and your teaching philosophy...">{{ $tutor->bio }}</textarea>
                                     <div class="form-text" id="bioCharCount">0/500 characters</div>
                                 </div>
 
@@ -117,6 +123,7 @@
                                         id="profileNewPassword" 
                                         class="form-control pr-5"
                                         placeholder="Enter password"
+                                        name="profileNewPassword"
                                     >
 
                                     <span 
@@ -136,11 +143,12 @@
                                 <div class="position-relative">
                                     <input 
                                         type="password" 
-                                        id="profileConfirmNewPassword" 
+                                        id="profileNewPassword_confirmation" 
                                         class="form-control pr-5"
                                         placeholder="Enter password"
+                                        name="profileNewPassword_confirmation"
                                     >
-
+                                        
                                     <span 
                                         id="toggleConfirmNewPassword"
                                         class="position-absolute top-50 end-0 translate-middle-y me-3"
@@ -151,12 +159,19 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-full">Save Profile Changes</button>
+                            <div id="passwordError" class="text-danger mb-3" style="display:none;">
+                                Passwords do not match
+                            </div>
+                            <input type="hidden" name="subjectsTeaching_profile" id="subjectsTeaching_profile" value="{{ json_encode($subjects ?? []) }}">
+                            </form>
+                            <button type="button" class="btn btn-primary w-full" id="saveProfileBtn">Save Profile Changes</button>
+                            
                         </div>
                     </div>
                     
                 </div>
 
             </div>
-    </form>
+            
+   
 </main>
