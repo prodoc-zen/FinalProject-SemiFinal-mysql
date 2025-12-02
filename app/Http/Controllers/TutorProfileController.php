@@ -144,8 +144,6 @@ class TutorProfileController extends Controller
             
         
         
-        
-
         if ($request->hasFile('profilePictureInput')) {
             $file = $request->file('profilePictureInput');
             $filename = time() . '_' . $file->getClientOriginalName();

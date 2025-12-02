@@ -43,7 +43,7 @@
             flex-direction: column;
         }
         .auth-background {
-            background-image: url('https://placehold.co/1200x800/8BC34A/FFFFFF/png?text=Learning+Background');
+            background-image: url('/images/tutorimage4.jpg');
             background-size: cover; background-position: center;
             position: relative; color: white; padding: 3rem;
             display: flex; flex-direction: column; justify-content: center;

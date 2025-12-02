@@ -12,7 +12,7 @@
                             <div>
                                 <p class="text-muted mb-1 small text-uppercase">Total Sessions</p>
                                 <h2 class="display-5 fw-bold text-dark mb-0">{{$totalSessions}}</h2>
-                                <p class="small text-muted mb-0">Completed & scheduled</p>
+                                <p class="small text-muted mb-0">All sessions</p>
                             </div>
                             <div class="icon-circle"><i class="fas fa-calendar-alt"></i></div>
                         </div>
@@ -24,7 +24,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <p class="text-muted mb-1 small text-uppercase">Pending Requests</p>
-                                <h2 class="display-5 fw-bold text-dark mb-0">{{$upcomingSessions}}</h2>
+                                <h2 class="display-5 fw-bold text-dark mb-0">{{$pending_bookings_count}}</h2>
                                 <p class="small text-muted mb-0">Awaiting your approval</p>
                             </div>
                             <div class="icon-circle" style="background-color:#ffc107; box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);"><i class="fas fa-hourglass-start"></i></div>
@@ -39,8 +39,16 @@
                             <div>
                                 <p class="text-muted mb-1 small text-uppercase">Total Earnings</p>
                                 <!-- Font size will dynamically shrink very aggressively as the available width decreases -->
-                                <h2 class="display-5 fw-bold text-dark mb-0">$23</h2>
-                                <p class="small text-muted mb-0">Paid out this month</p>
+                                <h2 class="display-5 fw-bold text-dark mb-0">$
+                                    @php
+                                        $cash = 0;
+                                        foreach($bookings as $booking)
+                                            if($booking->status === 'completed')
+                                                 $cash += $booking->cost;
+                                        echo $cash;
+                                    @endphp
+                                </h2>
+                                <p class="small text-muted mb-0">Overall Earnings</p>
                             </div>
                             <div class="icon-circle" style="background-color:#28a745; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);"><i class="fas fa-dollar-sign"></i></div>
                         </div>

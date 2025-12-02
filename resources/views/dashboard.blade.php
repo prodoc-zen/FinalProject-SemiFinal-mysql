@@ -34,7 +34,14 @@
         </a>
 
         <div class="d-flex align-items-center gap-3 pb-4 mb-4 border-bottom">
-            <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name,0,2)) }}</div>
+            
+            <div class="user-avatar rounded-circle overflow-hidden"
+                style="width:32px; height:32px;">
+                <img src="{{ $student->profile_picture }}"
+                    alt="Avatar"
+                    style="width:100%; height:100%; object-fit:cover;">
+            </div>
+
             <div>
                 <div class="fw-bold text-dark">{{ Auth::user()->name }}</div>
                 <div class="small text-muted">{{ ucfirst(Auth::user()->role) }}</div>
@@ -52,7 +59,7 @@
                 <a class="nav-link" id="sessionsLink" onclick="goToSessions()"><i class="fas fa-calendar-alt"></i> My Sessions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fas fa-user"></i> Profile</a>
+                <a class="nav-link" id="profileLink" onclick="goToProfileEdit()"><i class="fas fa-user"></i> Profile</a>
             </li>
         </ul>
 
@@ -75,17 +82,38 @@
                             <i class="fas fa-bars"></i>
                         </button>
                         <a class="navbar-brand d-lg-none">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold me-2" style="width:24px;height:24px;background-color:var(--bs-primary);">{{ strtoupper(substr(Auth::user()->name,0,1)) }}</div>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center me-2"
+                                style="width:24px;height:24px;overflow:hidden;">
+                                <img src="{{ $student->profile_picture }}" 
+                                    alt="Profile"
+                                    style="width:100%; height:100%; object-fit:cover;">
+                            </div>
                             <span>{{ Auth::user()->name }}</span>
                         </a>
 
                         <ul class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
+                            <div class="hidden md:flex items-center text-gray-700 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-200 font-semibold"> 
+                                <i class="fas fa-wallet text-[var(--bs-primary)] mr-2"></i> 
+                                <span id="headerBalance">${{$student->balance}}</span> 
+                            </div>
+
+                            <button class="btn btn-primary btn-sm flex items-center gap-2" onclick="openCashInModal()">
+                                <i class="fas fa-plus-circle"></i> <span class="hidden sm:inline">Cash In</span>
+                            </button>
+
                             <span class="d-none d-md-inline me-2 text-muted fw-semibold">{{ Auth::user()->name }}</span>
+                            
                             <li class="nav-item">
                                 
                                 <a class="nav-link d-flex align-items-center" href="{{ route('profile.edit') }}">
-                                    <div class="user-avatar" style="width:32px;height:32px;font-size:0.8rem;">{{ strtoupper(substr(Auth::user()->name,0,2)) }}</div>
+                                    <div class="rounded-circle overflow-hidden me-2" 
+                                        style="width:32px; height:32px;">
+                                        <img src="{{ $student->profile_picture }}" 
+                                            alt="Avatar"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
                                 </a>
+
                             </li>
                         </ul>
                     </div>
@@ -106,11 +134,25 @@
                         @include('students.partials.dashboard-sessions')
                     </div>
 
+                    <div class="carousel-item" id="slideBrowse">
+                        @include('students.partials.dashboard-profile')
+                    </div>
+
                 </div>
             </div>
 
             <!-- Booking Modal -->
             @include('students.partials.dashboard-modal')
+
+            <input type="hidden" id="studentName_profile" value="{{ $student->user->name }}">
+            <input type="hidden" id="phone_profile" value="{{ $student->phone }}">
+            <input type="hidden" id="address_profile" value="{{ $student->address }}">
+            <input type="hidden" id="bio_profile" value="{{ $student->bio}}">
+            <input type="hidden" id="balance_profile" value="{{ $student->balance }}">
+            <input type="hidden" id="profilePictureUrl_profile" value="{{ $student->profile_picture }}">
+
+            <input type="hidden" id="balance" value="{{ $student->balance }}">
+
             
 
     <!-- Bootstrap JS -->
@@ -119,6 +161,9 @@
     <script src="{{ asset('js/dashboard-student-carousel.js') }}"></script>
     <script src="{{ asset('js/dashboard-student-session.js') }}"></script>
     <script src="{{ asset('js/dashboard-student-modal.js') }}"></script>
+    <script src="{{ asset('js/dashboard-student-profile.js') }}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('js/dashboard-student-cashin.js') }}"></script>
     
 
 </body>

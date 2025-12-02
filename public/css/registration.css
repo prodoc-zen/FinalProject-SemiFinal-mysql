@@ -16,7 +16,7 @@
         .text-primary { color: var(--bs-primary) !important; }
         .form-check-input:checked { background-color: var(--bs-primary); border-color: var(--bs-primary); }
 
-        .auth-background { background-image: url('https://placehold.co/1200x800/8BC34A/FFFFFF/png?text=Learning+Background'); background-size: cover; background-position: center; position: relative; color: white; padding: 3rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 100%; }
+        .auth-background { background-image: url('/images/partnership1.jpg'); background-size: cover; background-position: center; position: relative; color: white; padding: 3rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 100%; }
         .auth-background::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--custom-overlay-green); z-index: 1; }
         .auth-content { z-index: 2; }
 

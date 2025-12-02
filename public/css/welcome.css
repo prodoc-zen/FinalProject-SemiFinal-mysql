@@ -1,0 +1,47 @@
+:root {
+            /* Deep Green for Primary CTAs, Footer, and Logo */
+            --bs-primary: #558B2F; 
+            /* Lighter Green for accents/borders (used as 'secondary' in this context) */
+            --bs-secondary: #8BC34A;
+            /* Very light background tint */
+            --custom-bg-light: #F9FFF5; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--custom-bg-light);
+            min-height: 100vh;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #4A7727; /* Slightly darker green on hover */
+            border-color: #4A7727;
+            transform: scale(1.05);
+        }
+
+        .text-primary {
+            color: var(--bs-primary) !important;
+        }
+
+        .border-primary {
+            border-color: var(--bs-primary) !important;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem !important; /* Customizing a bit larger rounded corners */
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+        }

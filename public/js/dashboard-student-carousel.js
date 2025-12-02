@@ -9,6 +9,7 @@ function goToBrowseTutor()
             document.getElementById('overviewLink').classList.remove('active');
             document.getElementById('sessionsLink').classList.remove('active');
             document.getElementById('browseLink').classList.add('active');
+            document.getElementById('profileLink').classList.remove('active');
         }
 
         function goToOverview() 
@@ -22,6 +23,7 @@ function goToBrowseTutor()
             document.getElementById('overviewLink').classList.add('active');
             document.getElementById('browseLink').classList.remove('active');
             document.getElementById('sessionsLink').classList.remove('active');
+            document.getElementById('profileLink').classList.remove('active');
         }
 
         function goToSessions() 
@@ -35,4 +37,17 @@ function goToBrowseTutor()
             document.getElementById('sessionsLink').classList.add('active');
             document.getElementById('browseLink').classList.remove('active');
             document.getElementById('overviewLink').classList.remove('active');
+            document.getElementById('profileLink').classList.remove('active');
+        }
+
+        function goToProfileEdit()
+        {
+            const myCarousel = document.querySelector('#dashboardCarousel');
+            const carousel = bootstrap.Carousel.getOrCreateInstance(myCarousel);
+            carousel.to(3); // Go to fourth slide
+
+            document.getElementById('sessionsLink').classList.remove('active');
+            document.getElementById('browseLink').classList.remove('active');
+            document.getElementById('overviewLink').classList.remove('active');
+            document.getElementById('profileLink').classList.add('active');
         }

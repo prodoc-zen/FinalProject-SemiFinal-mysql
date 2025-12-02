@@ -96,6 +96,7 @@
                                 <input type="hidden" name="scheduled_at" id="scheduled_at">
                                 <input type="hidden" name="duration_minutes" id="duration_minutes">
                                 <input type="hidden" name="status" id="status" value="pending">
+                                <input type="hidden" name="cost" id="cost" value="summaryTotalPrice">
                                 
                             </form>
 
@@ -169,5 +170,49 @@
                 @csrf
                 <input type="hidden" name="booking_id" id="completeBookingId">
             </form>
+
+
+
+             <!-- CASH IN MODAL  -->
+<div class="modal fade" id="cashInModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="cashInForm" action="{{ route('student.cashin') }}" method="POST" class="modal-content rounded-4 border-0 shadow-lg">
+      @csrf
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-0 px-5">
+        <div class="text-center mb-4">
+          <i class="fas fa-wallet fa-3x text-[var(--bs-primary)] mb-3"></i>
+          <h4 class="fw-bold text-dark">Cash In Funds</h4>
+          <p class="text-muted small">Add funds to your TutorMatch wallet.</p>
+        </div>
+        <div class="mb-3">
+          <label for="cashInAmount" class="form-label fw-semibold">Amount ($)</label>
+          <input type="number" id="cashInAmount" name="amount" class="form-control form-control-lg text-center" placeholder="0.00" min="5" step="0.01" required>
+        </div>
+        <div class="mb-4">
+          <label for="paymentMethod" class="form-label fw-semibold">Payment Method</label>
+          <select id="paymentMethod" name="payment_method" class="form-select" required>
+            <option value="" disabled selected>Select method...</option>
+            <option value="GCash">GCash</option>
+            <option value="PayPal">PayPal</option>
+            <option value="Bank Transfer">Bank Transfer (BDO/BPI)</option>
+            <option value="Credit Card">Credit/Debit Card</option>
+          </select>
+        </div>
+        <div class="d-grid mb-3">
+          <button type="submit" class="btn btn-primary btn-lg">Confirm Cash In</button>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0 pb-4 d-flex justify-content-center">
+        <button type="button" class="btn btn-link text-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
 
 

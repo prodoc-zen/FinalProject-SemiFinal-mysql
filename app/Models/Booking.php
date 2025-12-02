@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Booking extends Model
 {
     /** @use HasFactory<\Database\Factories\BookingFactory> */
@@ -17,6 +19,7 @@ class Booking extends Model
         'scheduled_at',
         'duration_minutes',
         'status',
+        'cost',
     ];
 
     public function student()
@@ -32,6 +35,11 @@ class Booking extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(messages::class);
     }
     
 

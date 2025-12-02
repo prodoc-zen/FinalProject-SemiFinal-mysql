@@ -6,27 +6,34 @@ use App\Models\CashIn;
 use App\Models\StudentProfile;
 
 
+
+
 use Illuminate\Http\Request;
 
 class CashInController extends Controller
 {
     public function cashIn(Request $request)
     {
-        $request->validate([
+        try{
+            $request->validate([
             'amount' => 'required|numeric|min:1',
+            'payment_method' => 'required|string',
         ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->errors())->withInput();
+        }
+        
+        $user = auth()->user();
+        $student = StudentProfile::where('user_id', $user->id)->first();
 
-        // 1. Record the transaction
         CashIn::create([
-            'user_id' => auth()->id(),
-            'amount' => $request->amount,
-            'payment_method' => $request->payment_method,
-            'reference_number' => $request->reference_number,
+            'student_id' => $student->id,
+            'amount' => $request->input('amount'),
+            'payment_method' => $request->input('payment_method'),
         ]);
 
-        // 2. AUTO update balance
-        StudentProfile::where('user_id', auth()->id())
-            ->increment('balance', $request->amount);
+        // Update the student's balance
+        $student->increment('balance', $request->input('amount'));
 
         return back()->with('success', 'Cash in successful!');
     }

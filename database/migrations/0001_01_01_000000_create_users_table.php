@@ -19,8 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('role', ['student', 'tutor']);
+            $table->enum('role', ['student', 'tutor', 'admin']);
         });
+
+        DB::table('users')->insert([
+          ['id' => 1, 'name' => 'Admin', 'email' => 'admin@example.com', 'password' => bcrypt('password'), 'role' => 'admin', 'created_at' => now(), 'updated_at' => now()],
+        ]);
 
         
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TutorMatch | Sign In</title>
+    <title>Tuturo | Sign In</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center me-auto" href="#">
                 <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold me-2" style="width: 24px; height: 24px; background-color: var(--bs-primary);">T</div>
-                <span class="fs-5 fw-bold text-dark">TutorMatch</span>
+                <span class="fs-5 fw-bold text-dark">Tuturo</span>
             </a>
             
             <!-- Mobile Toggler -->
@@ -40,11 +40,11 @@
                         <a class="nav-link text-dark" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+                        <a class="btn btn-primary rounded-lg shadow-sm" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('register') }}"
-                        class="btn btn-primary rounded-lg shadow-sm">
+                        class="nav-link text-dark   ">
                             Sign Up
                         </a>
                     </li>
@@ -60,7 +60,7 @@
         <div class="col-lg-6 d-none d-lg-flex auth-background">
             <div class="auth-content">
                 <i class="fas fa-graduation-cap fa-3x mb-4 opacity-75"></i>
-                <h2 class="fs-2 fw-semibold mb-3">Welcome to TutorMatch</h2>
+                <h2 class="fs-2 fw-semibold mb-3">Welcome to Tuturo</h2>
                 <p class="lead opacity-90">Connect with expert tutors and unlock your learning potential.</p>
             </div>
         </div>
@@ -104,11 +104,6 @@
                         @enderror
                     </div>
 
-                    <!-- Remember -->
-                    <div class="form-check mt-4">
-                        <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
-                        <label class="form-check-label small">Remember me</label>
-                    </div>
 
                     <!-- Actions -->
                     <div class="d-flex justify-content-between align-items-center mt-4 pt-2">

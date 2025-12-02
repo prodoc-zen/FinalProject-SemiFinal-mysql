@@ -47,6 +47,20 @@
                                     <div class="time-location">
                                         <i class="fas fa-calendar-day"></i> {{ $pending_booking->scheduled_at ?? 'No Date' }} (Online)
                                     </div>
+                                    <div class="time-location">
+                                        <i class="fas fa-dollar-sign"></i> {{ number_format($pending_booking->cost ?? 0, 2) }}
+                                    </div>
+
+                                    @php
+                                        $hours = intdiv($pending_booking->duration_minutes ?? 0, 60);
+                                        $minutes = ($pending_booking->duration_minutes ?? 0) % 60;
+                                    @endphp
+
+                                    <div class="time-location">
+                                        <i class="fas fa-clock"></i> 
+                                        {{ $hours > 0 ? $hours . ' hr ' : '' }}{{ $minutes > 0 ? $minutes . ' min' : '' }}
+                                    </div>
+
                                 </div>
                                 
                                 <div class="session-actions">

@@ -8,13 +8,23 @@
                 <!-- Tabs for filtering sessions -->
                 <ul class="nav nav-tabs mb-4" id="sessionTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming-sessions" type="button" role="tab">Upcoming ({{$confirmed_bookings_count + $pending_bookings_count}})</button>
+                        <button 
+                            class="nav-link active" 
+                            id="upcoming-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#upcoming-sessions" 
+                            type="button" 
+                            role="tab"
+                            style="color:#464545; font-family: 'Inter', sans-serif; font-weight: 600;">
+                            Upcoming ({{ $confirmed_bookings_count + $pending_bookings_count }})
+                        </button>
+
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-sessions" type="button" role="tab">Completed ({{$completed_bookings_count}})</button>
+                        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-sessions" type="button" role="tab" style="color:#464545; font-family:'Inter', sans-serif; font-weight: 600;">Completed ({{$completed_bookings_count}})</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled-sessions" type="button" role="tab">Cancelled ({{$canceled_bookings_count}})</button>
+                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled-sessions" type="button" role="tab" style="color:#464545; font-family:'Inter', sans-serif; font-weight: 600;">Cancelled ({{$canceled_bookings_count}})</button>
                     </li>
                 </ul>
 
@@ -47,11 +57,25 @@
                                                 @endphp
                                                 <div class="col-6"><i class="fas fa-calendar me-2 text-muted"></i> Date: <span class="fw-semibold">{{ $start->format('l, M j, Y') }}</span></div>
                                                 <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ $start->format('g:i A') }} - {{ $end->format('g:i A') }}</span></div>
-                                                <div class="col-6"><i class="fas fa-dollar-sign me-2 text-muted"></i> Total Cost: <span class="fw-semibold">${{ number_format($session->total_cost, 2) }}</span></div>
+                                                <div class="col-6"><i class="fas fa-dollar-sign me-2 text-muted"></i> Total Cost: <span class="fw-semibold">${{ $session->cost }}</span></div>
                                                 <div class="col-6"><i class="fas fa-history me-2 text-muted"></i> Duration: <span class="fw-semibold">{{ $session->duration_minutes }} min</span></div>
                                             </div>
+                                            
                                             <div class="d-flex justify-content-end">
-                                                <!-- Complete & Cancel Actions -->
+                                                <!-- Complete & Cancel Actions and chat button -->
+
+                                                <div class="me-3">
+                                                    <a href="
+                                    @if(auth()->user()->role === 'student')
+                                        {{ route('chat.open', ['booking_id' => $session->id]) }}
+                                    @else
+                                        {{ route('tutor.chat.open', ['booking_id' => $session->id]) }}
+                                    @endif
+                                " class="btn btn-outline-secondary border-0 text-gray-600 hover:bg-gray-100 p-2 rounded-full">
+                                    <i class="fas fa-comments text-xl"></i>
+                                </a>
+                                                </div>
+                                                 
                                                 <button class="btn btn-primary me-2" onclick="showCompleteModal('{{ $session->tutor->user->name }}', '{{ $session->subject->name }}', '{{ $start->format('M j, Y \a\t g:i A') }}', '{{ $session->id }}')">
                                                     <i class="fas fa-check-circle me-1"></i> Complete Session
                                                 </button>
@@ -63,7 +87,7 @@
                                     </div>
                                 </div>
                             @empty
-                                <p class="text-muted small mb-3">Upcoming and Pending bookings appear here.</p>
+                                <p class="text-muted small mb-3">Confirmed and Pending bookings appear here.</p>
                             @endforelse
 
 
@@ -91,7 +115,7 @@
                                                 @endphp
                                                 <div class="col-6"><i class="fas fa-calendar me-2 text-muted"></i> Date: <span class="fw-semibold">{{ $start->format('l, M j, Y') }}</span></div>
                                                 <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ $start->format('g:i A') }} - {{ $end->format('g:i A') }}</span></div>
-                                                <div class="col-6"><i class="fas fa-dollar-sign me-2 text-muted"></i> Total Cost: <span class="fw-semibold">${{ number_format($session->total_cost, 2) }}</span></div>
+                                                <div class="col-6"><i class="fas fa-dollar-sign me-2 text-muted"></i> Total Cost: <span class="fw-semibold">${{ $session->cost }}</span></div>
                                                 <div class="col-6"><i class="fas fa-history me-2 text-muted"></i> Duration: <span class="fw-semibold">{{ $session->duration_minutes }} min</span></div>
                                             </div>
                                             <div class="d-flex justify-content-end align-items-center">

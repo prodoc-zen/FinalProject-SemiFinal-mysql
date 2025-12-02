@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('tutor_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('phone')->default('09123456789');
+            $table->string('address')->default('123 Main St, City, Country');
             $table->decimal('balance', 15, 2)->default(0);
-            $table->decimal('hourly_rate', 8, 2)->nullable();
+            $table->decimal('hourly_rate', 8, 2)->default(67.67);
             $table->string('profile_picture')->default('images/default-pfp.jpg');
-            $table->text('bio')->nullable();
-            $table->decimal('rating', 3, 2)->default(0.00);
+            $table->text('bio')->default('This is your bio. Update it to tell students more about you!');
             $table->timestamps();
         });
     }

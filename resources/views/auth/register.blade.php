@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TutorMatch | Create Your Account</title>
+    <title>Tuturo | Create Your Account</title>
     <!-- Load Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
@@ -21,7 +21,7 @@
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center me-auto" href="#">
                 <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold me-2" style="width: 24px; height: 24px; background-color: var(--bs-primary);">T</div>
-                <span class="fs-5 fw-bold text-dark">TutorMatch</span>
+                <span class="fs-5 fw-bold text-dark">Tuturo</span>
             </a>
             
             <!-- Mobile Toggler -->
@@ -49,7 +49,7 @@
             <div class="col-lg-6 d-none d-lg-flex auth-background">
                 <div class="auth-content">
                     <i class="fas fa-graduation-cap fa-3x mb-4 opacity-75"></i>
-                    <h2 class="fs-2 fw-semibold mb-4">Join TutorMatch Today</h2>
+                    <h2 class="fs-2 fw-semibold mb-4">Join Tuturo Today</h2>
                     <ul class="auth-list">
                         <li><i class="fas fa-check-circle"></i>Connect with qualified tutors in various subjects.</li>
                         <li><i class="fas fa-check-circle"></i>Flexible scheduling that fits your lifestyle.</li>
@@ -93,19 +93,20 @@
                         <div class="mb-3">
                             <label for="email" class="form-label fw-semibold small text-dark">Email Address</label>
                             <input id="email" class="form-control" type="email" name="email" :value="old('email')" required placeholder="student@example.com">
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 list-none p-0 m-0" />
                         </div>
 
                         <div class="mt-4 mb-3">
                             <label for="password" class="form-label fw-semibold small text-dark">Password</label>
                             <input id="password" class="form-control" type="password" name="password" required placeholder="Create a secure password">
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 list-none p-0 m-0" />
+
                         </div>
 
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label fw-semibold small text-dark">Confirm Password</label>
                             <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required placeholder="Re-enter password">
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-600 list-none p-0 m-0" />
                         </div>
 
                         <div class="mt-4 pt-2">

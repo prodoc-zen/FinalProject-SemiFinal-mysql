@@ -5,8 +5,9 @@
         const subjectId = button.dataset.subjectId;
         const tutorName = button.dataset.tutorName;
         const tutorSubject = button.dataset.tutorSubject;
-        const tutorRate = parseInt(button.dataset.tutorRate, 10);
+        const tutorRate = parseFloat(button.dataset.tutorRate, 10);
         const studentId = button.dataset.studentId;
+
     
 
     // Update modal titles
@@ -25,7 +26,7 @@
     const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     
     let today = new Date();
-    let selectedBookingDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    let selectedBookingDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
     let currentMonthDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
     function formatYMD(date) {
@@ -61,12 +62,41 @@
             }
 
             dayDiv.addEventListener('click', e => {
+                const [y, m, d] = e.target.dataset.date.split('-').map(Number);
+                const clickedDate = new Date(y, m - 1, d);
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // reset to midnight
+                let minBookingDate = new Date(today);
+                minBookingDate.setDate(minBookingDate.getDate() + 1); // at least next day
+
+                if (clickedDate < minBookingDate) {
+                    alert("You must book at least 1 day in advanced.");
+                    return; // stop here
+                }
+
+                // Select the day visually
                 calendarBody.querySelectorAll('.calendar-day').forEach(c => c.classList.remove('day-selected'));
                 e.target.classList.add('day-selected');
-                const [y,m,d] = e.target.dataset.date.split('-').map(Number);
-                selectedBookingDate = new Date(y, m-1, d);
+                selectedBookingDate = clickedDate;
+
+                // ✅ Reset time input if today is selected
+                const startTimeInput = document.getElementById('startTimeInput');
+                if (clickedDate.getTime() === today.getTime()) {
+                    // prevent past times
+                    const now = new Date();
+                    const safeHour = Math.max(now.getHours(), 10); // default min 10AM
+                    const safeMinute = now.getMinutes() < 30 ? 0 : 30; // round to 0 or 30
+                    startTimeInput.value = `${safeHour.toString().padStart(2,'0')}:${safeMinute.toString().padStart(2,'0')}`;
+                    startTimeInput.min = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+                } else {
+                    startTimeInput.value = '10:00';
+                    startTimeInput.min = '00:00'; // reset min for future dates
+                }
+
                 updateBookingSummary();
             });
+
 
             calendarBody.appendChild(dayDiv);
         }
@@ -158,17 +188,17 @@
     document.getElementById('scheduled_at').value = formattedDateTime;
     document.getElementById('duration_minutes').value = durationSelect.value; // Blade syntax
     document.getElementById('student_id').value = studentId;
+    document.getElementById('status').value = 'Pending';
+    document.getElementById('cost').value = ((durationSelect.value/60)*tutorRate).toFixed(2);
 
-    alert(
-    `Student ID: ${document.getElementById('student_id').value}\n` +
-    `Tutor ID: ${document.getElementById('tutor_id').value}\n` +
-    `Subject ID: ${document.getElementById('subject_id').value}\n` +
-    `Scheduled At: ${document.getElementById('scheduled_at').value}\n` +
-    `Duration: ${document.getElementById('duration_minutes').value}\n` + 
-    `Status: ${document.getElementById('status').value}`
-    );
+    if(parseFloat(document.getElementById('balance').value) < parseFloat(document.getElementById('cost').value) )
+    {
+        alert("Insufficient balance to book this session. Please cash in and try again.");
+        return;
+    }
 
     // Submit the hidden form
+    alert("Session booked successfully.");
     document.getElementById('bookingForm').submit();
     };
 

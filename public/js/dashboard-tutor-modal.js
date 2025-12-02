@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentActionDetails = { type: 'reject', studentName, subject };
                 document.getElementById('modalRejectStudentName').textContent = studentName;
                 document.getElementById('rejectRequestId').value = pendingId;
-                alert(document.getElementById('rejectRequestId').value);
                 rejectModal.show();
             };
 
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //cancel or reject form on confirm
             document.getElementById("confirmRejectBtn").addEventListener("click", function () {
-                alert(document.getElementById('rejectRequestId').value);
                 document.getElementById("rejectRequestForm").submit();
                 
             });
@@ -85,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //submit form on confirm
             document.getElementById("confirmCompleteSessionBtn").addEventListener("click", function () 
             {
-                alert(document.getElementById('completeSessionId').value);
                 document.getElementById("completeSessionForm").submit();
             });
 

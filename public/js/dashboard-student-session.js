@@ -1,4 +1,25 @@
 let bookingId = null;
+
+function filterTutors() {
+    let input = document.getElementById("tutorSearchInput").value.toLowerCase();
+    let selectedSubject = document.getElementById("subjectFilter").value.toLowerCase();
+    let tutors = document.querySelectorAll(".tutor-container");
+
+    tutors.forEach(tutor => {
+        let name = tutor.querySelector(".tutor-name")?.textContent.toLowerCase() || "";
+        let subject = tutor.querySelector(".tutor-subject")?.textContent.toLowerCase() || "";
+
+        let matchesSearch = name.includes(input) || subject.includes(input);
+        let matchesSubject = name.includes(selectedSubject) || subject.includes(selectedSubject);
+
+        if (matchesSearch && matchesSubject) {
+            tutor.style.display = "block";
+        } else {
+            tutor.style.display = "none";
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () 
 {
     const cancelModal = new bootstrap.Modal(document.getElementById('cancelModal'));
@@ -24,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function ()
         document.getElementById('modalCompleteSessionTopic').textContent = topic;
         document.getElementById('modalCompleteSessionTime').textContent = time;
         document.getElementById('completeBookingId').value = bookingIdParam;
-        alert(document.getElementById('completeBookingId').value);
 
         completeModal.show();
     };
@@ -49,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function ()
         if (currentActionDetails.type === 'cancel') {
             // Set the hidden form input
             document.getElementById('cancel_booking_id').value = bookingId;
-            alert(document.getElementById('cancel_booking_id').value);
             // Submit the form
             document.getElementById('cancelBookingForm').submit();
         }

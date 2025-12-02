@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
                 
                 return redirect()->route('tutor.dashboard'); 
             case 'admin':
-                return redirect()->route('profile.edit'); 
+                return redirect()->route('admin.dashboard'); 
             default:
                 return view('auth.login');
         }

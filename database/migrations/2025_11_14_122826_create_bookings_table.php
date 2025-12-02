@@ -17,15 +17,13 @@ return new class extends Migration
             $table->foreignId('tutor_id')->constrained('tutor_profiles')->onDelete('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->dateTime('scheduled_at')->nullable();
+            $table->decimal('cost', 10, 2)->default(0);
             $table->integer('duration_minutes')->nullable();
             $table->enum('status', ['pending', 'confirmed', 'completed', 'canceled'])->default('pending');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('bookings');

@@ -17,6 +17,15 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        DB::table('subjects')->insert([
+        ['id' => 1, 'name' => 'Mathematics', 'description' => 'Mathematics subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ['id' => 2, 'name' => 'Physics', 'description' => 'Physics subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ['id' => 3, 'name' => 'English Literature', 'description' => 'English Literature subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ['id' => 4, 'name' => 'Computer Science', 'description' => 'Computer Science subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ['id' => 5, 'name' => 'Chemistry', 'description' => 'Chemistry subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ['id' => 6, 'name' => 'History', 'description' => 'History subject description.', 'created_at' => now(), 'updated_at' => now()],
+        ]);
     }
 
     /**

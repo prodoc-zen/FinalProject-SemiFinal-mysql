@@ -104,7 +104,7 @@
         <input type="hidden" name="booking_id" id="rejectRequestId">
     </form>
 
-    <form id="cancelSessionForm" action="{{ route('booking.reject') }}" method="POST" style="display: none;">
+    <form id="cancelSessionForm" action="{{ route('booking.reject2') }}" method="POST" style="display: none;">
         @csrf
         <input type="hidden" name="booking_id" id="cancelBookingId">
     </form>

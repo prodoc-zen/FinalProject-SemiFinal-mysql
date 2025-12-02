@@ -13,7 +13,7 @@
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TutorMatch | Find Your Perfect Tutor</title>
+    <title>Tuturo | Find Your Perfect Tutor</title>
     <!-- Load Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -22,47 +22,11 @@
     
     <!-- Custom Styles to define the green color scheme and background -->
     <style>
-        :root {
-            /* Deep Green for Primary CTAs, Footer, and Logo */
-            --bs-primary: #558B2F; 
-            /* Lighter Green for accents/borders (used as 'secondary' in this context) */
-            --bs-secondary: #8BC34A;
-            /* Very light background tint */
-            --custom-bg-light: #F9FFF5; 
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--custom-bg-light);
-            min-height: 100vh;
-        }
-
-        .btn-primary {
-            background-color: var(--bs-primary);
-            border-color: var(--bs-primary);
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #4A7727; /* Slightly darker green on hover */
-            border-color: #4A7727;
-            transform: scale(1.05);
-        }
-
-        .text-primary {
-            color: var(--bs-primary) !important;
-        }
-
-        .border-primary {
-            border-color: var(--bs-primary) !important;
-        }
-
-        .rounded-xl {
-            border-radius: 0.75rem !important; /* Customizing a bit larger rounded corners */
-        }
+        
     </style>
     <!-- Load Font for aesthetics -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 </head>
 <body>
 
@@ -72,7 +36,7 @@
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center me-auto" href="#">
                 <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold me-2" style="width: 24px; height: 24px; background-color: var(--bs-primary);">T</div>
-                <span class="fs-5 fw-bold text-dark">TutorMatch</span>
+                <span class="fs-5 fw-bold text-dark">Tuturo</span>
             </a>
             
             <!-- Mobile Toggler -->
@@ -84,14 +48,14 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center gap-3 mt-3 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ url('/') }}">Home</a>
+                        <a class="btn btn-primary rounded-lg shadow-sm" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('register') }}"
-                        class="btn btn-primary rounded-lg shadow-sm">
+                        class="nav-link text-dark">
                             Sign Up
                         </a>
                     </li>
@@ -117,7 +81,7 @@
                         <a  href="{{ route('register') }}" class="btn btn-primary btn-lg rounded-xl shadow-lg" type="button">
                             Get Started
                         </a>
-                        <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg rounded-xl border-2" type="button" style="--bs-btn-border-color: var(--bs-primary);">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg rounded-xl border-2" type="button" style="--bs-btn-border-color: var(--bs-primary);">
                             Sign In
                         </a>
                     </div>
@@ -126,7 +90,7 @@
                 <!-- Hero Image -->
                 <div class="col-md-6 d-flex justify-content-center justify-content-md-end">
                     <img
-                        src="https://placehold.co/600x400/8BC34A/FFFFFF/png?text=Learning+Together"
+                        src="images/tutorimage2.jpg"
                         alt="Family learning with a private tutor"
                         class="img-fluid rounded-xl shadow-lg"
                         style="max-width: 600px;"
@@ -141,7 +105,7 @@
     <section class="py-5 bg-white shadow-sm">
         <div class="container-fluid container-lg px-4 text-center">
             <h2 class="fs-2 fw-bold text-dark mb-5 pt-3">
-                Why Choose <span class="text-primary">TutorMatch</span>?
+                Why Choose <span class="text-primary">Tuturo</span>?
             </h2>
 
             <!-- Feature Cards Grid -->
@@ -203,9 +167,10 @@
             <!-- Bottom Image -->
             <div class="mt-5 pt-3">
                 <img
-                    src="https://placehold.co/1000x350/558B2F/FFFFFF/png?text=Professional+Group+Meeting"
+                    src="images/tutorimage3.jpg"
                     alt="Students or professionals collaborating"
-                    class="img-fluid rounded-xl shadow-lg"
+                    style="width:1000px; height:350px; object-fit:cover; border-radius:1rem;"
+                    class="shadow-lg"
                     onerror="this.onerror=null; this.src='https://placehold.co/1000x350?text=Collaboration+Image+Loading+Error';"
                 >
             </div>

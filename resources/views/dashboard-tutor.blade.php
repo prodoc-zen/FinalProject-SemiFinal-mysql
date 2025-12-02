@@ -91,6 +91,7 @@
 
                 <ul class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
                     <li class="nav-item">
+                        
                         <a class="nav-link d-flex align-items-center" href="#">
                             <span class="d-none d-md-inline me-2 text-muted fw-semibold">{{ Auth::user()->name  }}</span>
                             <img src="{{ $tutor->profile_picture }}" alt="Avatar" class="rounded-circle me-2" style="width:32px; height:32px; object-fit:cover;">

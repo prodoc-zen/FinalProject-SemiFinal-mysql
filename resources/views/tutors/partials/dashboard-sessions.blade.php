@@ -19,6 +19,17 @@
                                     <i class="fas fa-calendar-day"></i> {{$confirmed_booking->scheduled_at}} (Online)
                                 </div>
                             </div>
+                            <div class="me-3">
+                                <a href="
+                                    @if(auth()->user()->role === 'student')
+                                        {{ route('chat.open', ['booking_id' => $confirmed_booking->id]) }}
+                                    @else
+                                        {{ route('tutor.chat.open', ['booking_id' => $confirmed_booking->id]) }}
+                                    @endif
+                                " class="btn btn-outline-secondary border-0 text-gray-600 hover:bg-gray-100 p-2 rounded-full">
+                                    <i class="fas fa-comments text-xl"></i>
+                                </a>
+                            </div>
                             <div class="d-flex justify-content-end flex-wrap gap-1 session-actions">
                                 <button class="btn btn-primary" onclick="showCompleteModal('{{$confirmed_booking->student->user->name}}', '{{$confirmed_booking->subject->name}}', {{$confirmed_booking->id}})"><i class="fas fa-check-circle mr-2"></i> Complete Session</button>
                             

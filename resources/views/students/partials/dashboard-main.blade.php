@@ -10,9 +10,9 @@
                     <div class="stat-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <p class="text-muted mb-1 small text-uppercase">Total Sessions</p>
-                                <h2 class="display-5 fw-bold text-dark mb-0">{{$totalSessions}}</h2>
-                                <p class="small text-muted mb-0">Completed & scheduled</p>
+                                <p class="text-muted mb-1 small text-uppercase">Pending Sessions</p>
+                                <h2 class="display-5 fw-bold text-dark mb-0">{{$pending_bookings_count}}</h2>
+                                <p class="small text-muted mb-0">Pending Sessions</p>
                             </div>
                             <div class="icon-circle"><i class="fas fa-calendar-alt"></i></div>
                         </div>
@@ -23,8 +23,8 @@
                     <div class="stat-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <p class="text-muted mb-1 small text-uppercase">Upcoming</p>
-                                <h2 class="display-5 fw-bold text-dark mb-0">{{$upcomingSessions}}</h2>
+                                <p class="text-muted mb-1 small text-uppercase">Confirmed Sessions</p>
+                                <h2 class="display-5 fw-bold text-dark mb-0">{{$confirmed_bookings_count}}</h2>
                                 <p class="small text-muted mb-0">Confirmed sessions</p>
                             </div>
                             <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
@@ -37,8 +37,8 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <p class="text-muted mb-1 small text-uppercase">Active Subjects</p>
-                                <h2 class="display-5 fw-bold text-dark mb-0">{{$activeSubjects}}</h2>
-                                <p class="small text-muted mb-0">Math, Physics</p>
+                                <h2 class="display-5 fw-bold text-dark mb-0">6</h2>
+                                <p class="small text-muted mb-0">Math, Physics, Computer Science, and etc.</p>
                             </div>
                             <div class="icon-circle"><i class="fas fa-book-open"></i></div>
                         </div>

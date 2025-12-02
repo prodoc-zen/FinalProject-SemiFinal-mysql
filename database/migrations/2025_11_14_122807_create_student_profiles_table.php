@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('student_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('phone')->default('0993 032 4916');
+            $table->string('address')->default('Singapore korea');
             $table->string('profile_picture')->default('images/default-pfp.jpg');
             $table->decimal('balance', 15, 2)->default(0);
-            $table->text('bio')->nullable();
+            $table->text('bio')->default('This is my bio, 676767677676776767767676776');
             $table->timestamps();
         });
     }
