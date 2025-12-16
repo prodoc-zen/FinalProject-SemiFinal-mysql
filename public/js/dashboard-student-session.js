@@ -1,10 +1,12 @@
 let bookingId = null;
 
+
 function filterTutors() {
     let input = document.getElementById("tutorSearchInput").value.toLowerCase();
     let selectedSubject = document.getElementById("subjectFilter").value.toLowerCase();
     let tutors = document.querySelectorAll(".tutor-container");
-
+    
+    let visibleCount = 0;
     tutors.forEach(tutor => {
         let name = tutor.querySelector(".tutor-name")?.textContent.toLowerCase() || "";
         let subject = tutor.querySelector(".tutor-subject")?.textContent.toLowerCase() || "";
@@ -14,10 +16,18 @@ function filterTutors() {
 
         if (matchesSearch && matchesSubject) {
             tutor.style.display = "block";
+            visibleCount++;
         } else {
             tutor.style.display = "none";
+            
         }
     });
+
+    if(visibleCount === 0) {
+        document.getElementById("noTutorsMessage").style.display = "block";
+    } else {
+        document.getElementById("noTutorsMessage").style.display = "none";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () 

@@ -58,6 +58,7 @@
                     <div class="mb-4">
                         <label for="editEmail_tutor" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" name="editEmail_tutor" id="editEmail_tutor" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border">
+                        <x-input-error :messages="$errors->get('editEmail_tutor')" />
                     </div>
                 
                
@@ -69,6 +70,7 @@
                         <div>
                             <label for="editBalance_tutor" class="block text-sm font-medium text-gray-700">Current Balance</label>
                             <input type="number" name="editBalance_tutor" id="editBalance_tutor" step="0.1" min="0" max="5" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border">
+                            <x-input-error :messages="$errors->get('editBalance_tutor')" />
                         </div>
                     </div>
                 </form>
@@ -118,6 +120,7 @@
                     <div class="mb-4">
                         <label for="editEmail_student" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" name="editEmail_student" id="editEmail_student" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border">
+                        <x-input-error :messages="$errors->get('editEmail_student')" />
                     </div>
                 
                
@@ -129,6 +132,7 @@
                         <div>
                             <label for="editBalance_student" class="block text-sm font-medium text-gray-700">Current Balance</label>
                             <input type="number" name="editBalance_student" id="editBalance_student" step="0.1" min="0" max="5" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border">
+                            <x-input-error :messages="$errors->get('editBalance_student')" />
                         </div>
                     </div>
                 </form>
@@ -233,6 +237,7 @@
                     <div class="mb-4">
                         <label for="addEmail_addAccount" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" name="addEmail_addAccount" id="addEmail_addAccount" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border" required>
+                        <x-input-error :messages="$errors->get('addEmail_addAccount')" />
                     </div>
 
                     <!-- Password Field -->
@@ -242,6 +247,7 @@
                         <input type="password" name="addPassword_addAccount" id="addPassword_addAccount"  
                             class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] p-3 border" 
                             required>
+                        <x-input-error :messages="$errors->get('addPassword_addAccount')" />
                     </div>
 
                     <!-- Confirm Password -->

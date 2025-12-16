@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\messages;
 use App\Models\User;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 
 class MessagesController extends Controller
 {
@@ -16,6 +17,12 @@ class MessagesController extends Controller
         $bookingId = $request->query('booking_id');
 
         $bookingIds = Booking::find($bookingId);
+        $userId = Auth::user()->id;
+
+        if($bookingIds->student->user->id != $userId && $bookingIds->tutor->user->id != $userId)
+        {
+            abort(403, 'Unauthorized, you do not have access to this conversation!!');
+        }
 
 
         // Fetch messages related to the booking
@@ -42,7 +49,12 @@ class MessagesController extends Controller
         $bookingId = $request->query('booking_id');
 
         $bookingIds = Booking::find($bookingId);
+        $userId = Auth::user()->id;
 
+        if($bookingIds->student->user->id != $userId && $bookingIds->tutor->user->id != $userId)
+        {
+            abort(403, 'Unauthorized, you do not have access to this conversation!!');
+        }
 
         // Fetch messages related to the booking
         $messages = messages::where('booking_id', $bookingId)

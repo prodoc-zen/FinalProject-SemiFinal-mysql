@@ -11,8 +11,6 @@ use App\Models\TutorSubject;
 use App\Models\User;
 
 
-
-
 use Illuminate\Support\Facades\Auth;
 
 class Admin extends Controller
@@ -74,6 +72,8 @@ class Admin extends Controller
     public function deleteStudent(Request $request)
     {
         $studentId = $request->input('studentIdToDelete');
+        $userId = StudentProfile::where('id', $studentId)->value('user_id');
+        User::where('id', $userId)->delete();
         StudentProfile::where('id', $studentId)->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'Deletion successful!');
@@ -82,6 +82,8 @@ class Admin extends Controller
     public function deleteTutor(Request $request)
     {
         $tutorId = $request->input('tutorIdToDelete');
+        $userId = TutorProfile::where('id', $tutorId)->value('user_id');
+        User::where('id', $userId)->delete();
         TutorProfile::where('id', $tutorId)->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'Deletion successful!');
@@ -92,8 +94,13 @@ class Admin extends Controller
         $request->validate([
             'editId_tutor' => 'required|integer|exists:tutor_profiles,id',
             'editName_tutor' => 'required|string|max:255',
-            'editEmail_tutor' => 'required|email|max:255',
+            'editEmail_tutor' => 'required|email|max:255|unique:users,email,' . $request->input('editId_tutor'),
             'editBalance_tutor' => 'required|numeric|min:0',
+            ],[
+                'editEmail_tutor.unique' => 'The email has already been taken by another user.',
+                'editBalance_tutor.min' => 'The balance must be at least 0.',
+            
+            
         ]);
 
       
@@ -121,8 +128,10 @@ class Admin extends Controller
         $request->validate([
             'editId_student' => 'required|integer|exists:student_profiles,id',
             'editName_student' => 'required|string|max:255',
-            'editEmail_student' => 'required|email|max:255',
-            'editBalance_student' => 'required|numeric|min:0',
+            'editEmail_student' => 'required|email|max:255|unique:users,email,' . $request->input('editId_student'),
+            'editBalance_student' => 'required|numeric|min:0',],[
+                'editEmail_student.unique' => 'The email has already been taken by another user.',
+                'editBalance_student.min' => 'The balance must be at least 0.', 
         ]);
 
       
@@ -176,21 +185,15 @@ class Admin extends Controller
 
     public function addAccount(Request $request)
     {
-        try{
+      
             $request->validate([
                 'role_addAccount' => 'required|string|in:tutor,student',
                 'addName_addAccount' => 'required|string|max:255',
                 'addEmail_addAccount' => 'required|email|max:255|unique:users,email',
-                'addPassword_addAccount' => 'required|string|min:8|confirmed',
-                
+                'addPassword_addAccount' => 'required|string|min:8|confirmed',],[
+                    'addEmail_addAccount.unique' => 'The email has already been taken by another user.',
             ]);
-        }
-        catch(\Illuminate\Validation\ValidationException $e)
-        {
-            dd($e->errors());
-        }
         
-
         $role = $request->input('role_addAccount');
         $name = $request->input('addName_addAccount');
         $email = $request->input('addEmail_addAccount');

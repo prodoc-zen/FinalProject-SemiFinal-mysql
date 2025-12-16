@@ -31,6 +31,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (strlen($request->password) < 8) {
+        return back()
+            ->withErrors(['password' => 'Password must be at least 8 characters long.'])
+            ->withInput();
+    }
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

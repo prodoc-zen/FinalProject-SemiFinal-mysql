@@ -50,7 +50,7 @@
                                 <!-- Email -->                
                                 <div class="mb-3">
                                     <label for="profileEmail" class="form-label fw-semibold">Email Address</label>
-                                    <input type="email" name="profileEmail" id="profileEmail" class="form-control" value="{{ $student->user->email }}">
+                                    <input type="email" name="profileEmail" id="profileEmail" class="form-control" value="{{ $student->user->email }}" readonly disabled>
                                 </div>
                                 
 

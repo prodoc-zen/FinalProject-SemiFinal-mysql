@@ -166,7 +166,7 @@
                                             </div>
                                             <div class="row small g-2">
                                                 <div class="col-6"><i class="fas fa-calendar me-2 text-muted"></i> Date: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('M j, Y') }}</span></div>
-                                                <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('g:i A') }} - {{ \Carbon\Carbon::parse($session->scheduled_at)->addMinutes($session->duration)->format('g:i A') }}</span></div>
+                                                <div class="col-6"><i class="fas fa-clock me-2 text-muted"></i> Time: <span class="fw-semibold">{{ \Carbon\Carbon::parse($session->scheduled_at)->format('g:i A') }} - {{ \Carbon\Carbon::parse($session->scheduled_at)->addMinutes($session->duration_minutes)->format('g:i A') }}</span></div>
                                             </div>
                                             <!-- Removed: Book Again button -->
                                         </div>

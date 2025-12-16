@@ -197,9 +197,17 @@
         return;
     }
 
-    // Submit the hidden form
-    alert("Session booked successfully.");
-    document.getElementById('bookingForm').submit();
+    
+        if (confirm("Are you sure you want to book this? Make sure you don't have any conflicting sessions.")) {
+        // User clicked OK
+            console.log("Confirmed");
+            alert("Session booked successfully.");
+            document.getElementById('bookingForm').submit();
+        } else {
+            // User clicked Cancel
+            console.log("Cancelled");
+            return;
+        }
     };
 
 

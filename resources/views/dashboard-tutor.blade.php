@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuturo | Tutor Dashboard</title>
-    <!-- Load Bootstrap 5.3 CSS --><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Load Bootstrap 5.3 CSS -->
+    <link href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}" rel="stylesheet">
     
-    <!-- Load Font Awesome for icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Load Font Awesome for icons -->
+
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Load Font for aesthetics --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJdZ6g/EFEwWwZp1W5fK55B8FpY4D5Xo6K3l6PzK0v82G4B5t4P3bT4I6N5c5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load Font for aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Custom Styles -->
     <link id="dashboard-tutor-css" rel="stylesheet" href="{{ asset('css/dashboard-tutor.css') }}">
     <link id="dashboard-tutor-session-css" rel="stylesheet" href="{{ asset('css/dashboard-tutor-session.css') }}">
@@ -54,7 +61,7 @@
                 <a class="nav-link" id="sessionsLink" onclick="goToSessions()"><i class="fas fa-calendar-alt"></i>My Sessions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pendingRequestsLink" onclick="goToPendingRequests()"> <i class="fas fa-clock"></i>Pending Requests</a>
+                <a class="nav-link" id="pendingRequestsLink" onclick="goToPendingRequests()"> <i class="fas fa-clock"></i>Session Requests</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="profileLink" onclick="goToProfile()"><i class="fas fa-user"></i> Profile</a>
@@ -142,7 +149,9 @@
 
     
 
-    <!-- Bootstrap JS --><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    {{-- <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> --}}
+    <script src={{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }} ></script>
     <script src="{{ asset('js/dashboard-tutor-carousel.js') }}"></script>
     
     <script src="{{ asset('js/dashboard-tutor-modal.js') }}"></script>

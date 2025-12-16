@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuturo | Create Your Account</title>
     <!-- Load Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <link href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}" rel="stylesheet"> 
     
     <!-- Load Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,6 +14,18 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
+    <style>
+        .text-red-600 {
+        color: #dc3545 !important; /* Bootstrap danger red */
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .text-red-600 li {
+        list-style: none !important;
+    }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -87,7 +100,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold small text-dark">Full Name</label>
                             <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus placeholder="John Doe">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-red-600 list-none p-0 m-0" />
                         </div>
 
                         <div class="mb-3">

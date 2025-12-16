@@ -50,7 +50,7 @@
                                 <!-- Email -->                
                                 <div class="mb-3">
                                     <label for="profileEmail" class="form-label fw-semibold">Email Address</label>
-                                    <input type="email" name="profileEmail" id="profileEmail" class="form-control" value="{{ $tutor->user->email }}">
+                                    <input type="email" name="profileEmail" id="profileEmail" class="form-control" value="{{ $tutor->user->email }}" readonly disabled>
                                 </div>
                                 
                                 <div class="mb-3">
@@ -105,7 +105,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div id="subjectMessage" class="small text-success fw-semibold mt-3" style="display:none;">Subject added!</div>
+                            <div id="subjectMessage" class="small text-success fw-semibold mt-3" style="display:none;"></div>
                         </div>
                     </div>
                     <!--Change Password -->
@@ -173,5 +173,4 @@
 
             </div>
             
-   
 </main>

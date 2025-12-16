@@ -32,7 +32,7 @@
                 <!-- Tutor Cards Grid -->
                 <div id="tutorGrid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-                    @foreach ($tutors as $ts)
+                    @forelse ($tutors as $ts)
                         <div class="col tutor-container">
                             <div class="tutor-card card p-4 shadow-sm">
 
@@ -102,7 +102,13 @@
 
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        
+                        <p class="text-muted small mb-3">No tutors have been registered yet.</p>
+                            
+                    @endforelse
+                    <p class="text-muted small mb-3" id="noTutorsMessage" style="display:none;">No tutors have been found.</p>
+
 
                 </div>
             </div>

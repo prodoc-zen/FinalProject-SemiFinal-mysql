@@ -128,8 +128,18 @@
             document.getElementById('saveProfileBtn').addEventListener('click', (e) => {
                 const newPassword = document.getElementById('profileNewPassword').value;
                 const confirmNewPassword = document.getElementById('profileNewPassword_confirmation').value;
+                const phone = document.getElementById('profilePhone').value;
+                const address = document.getElementById('profileAddress').value;
+                const bio = document.getElementById('profileBio').value;
+                const name = document.getElementById('profileName').value;
 
-                if((newPassword.length > 0 && newPassword.length <= 8) && (confirmNewPassword.length > 0 && confirmNewPassword.length <= 8))
+                if(phone.trim() === "" || address.trim() === "" || bio.trim() === "" || name.trim() === "")
+                {
+                    alert("Please fill in all required fields.");
+                    return;
+                }
+
+                if((newPassword.length > 0 && newPassword.length < 8) && (confirmNewPassword.length > 0 && confirmNewPassword.length < 8))
                 {
                     alert("Password must be at least 1-8 characters long, but leave blank if you do not wish to change it.");
                     return;
